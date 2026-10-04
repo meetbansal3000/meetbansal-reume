@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Bansal | Financial Analyst & ACCA Affiliate</title>
+    <meta name="description" content="Portfolio of Meet Bansal - Financial Analyst, ACCA Affiliate, and MSc Finance Candidate at Durham University. Featuring comparative equity analysis (Coca-Cola vs PepsiCo) and financial models.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            DEFAULT: '#10b981', // Emerald 500
+                            hover: '#059669',   // Emerald 600
+                            light: '#ecfdf5',   // Emerald 50
+                            glow: 'rgba(16, 185, 129, 0.25)',
+                        },
+                        slate: {
+                            850: '#111c33',
+                            950: '#070d1e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Outfit', sans-serif;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+        .glow-radial {
+            background: radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 60%);
+        }
+        .grid-bg {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #10b981;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-navy-950 min-h-screen relative">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-xl border border-accent/40 shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm">
+            <i class="fas fa-check"></i>
+        </div>
+        <span id="toast-message" class="text-sm font-medium">Notification message</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-navy-950/80 backdrop-blur-xl border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-emerald-700 flex items-center justify-center text-navy-950 font-bold font-heading text-xl shadow-lg shadow-accent/20 group-hover:scale-105 transition-transform">
+                        MB
+                    </span>
+                    <div class="flex flex-col">
+                        <span class="font-heading font-bold text-lg text-white tracking-tight leading-tight">Meet Bansal</span>
+                        <span class="text-[11px] font-medium text-accent tracking-wider uppercase">Financial Analyst</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="#research" class="px-3.5 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">Research</a>
+                    <a href="#data-model" class="px-3.5 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">Financial Ratios</a>
+                    <a href="#projects" class="px-3.5 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">Technical App</a>
+                    <a href="#experience" class="px-3.5 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">Experience</a>
+                    <a href="#qualifications" class="px-3.5 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">Qualifications</a>
+                </div>
+
+                <!-- Action Button -->
+                <div class="hidden md:flex items-center gap-3">
+                    <button onclick="openModal('resume-modal')" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white border border-white/10 hover:border-white/25 transition-all">
+                        <i class="fas fa-file-pdf mr-1.5 text-accent"></i> CV Summary
+                    </button>
+                    <a href="mailto:accameetbansal@gmail.com" class="px-4 py-2 bg-accent text-navy-950 font-semibold text-sm rounded-lg hover:bg-accent-hover transition-all shadow-md shadow-accent/20 flex items-center gap-1.5">
+                        <i class="fas fa-paper-plane text-xs"></i> Let's Connect
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden">
+                    <button id="mobile-toggle" onclick="toggleMobileMenu()" class="text-slate-400 hover:text-white focus:outline-none p-2" aria-label="Toggle Navigation">
+                        <i id="menu-icon" class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-white/10 bg-navy-900/95 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-3">
+            <a href="#research" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-accent font-medium">Featured Research</a>
+            <a href="#data-model" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-accent font-medium">Financial Ratio Analysis</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-accent font-medium">Technical App: Manage Me</a>
+            <a href="#experience" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-accent font-medium">Professional Experience</a>
+            <a href="#qualifications" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-accent font-medium">Education & Credentials</a>
+            <div class="pt-4 flex flex-col gap-2.5">
+                <button onclick="openModal('resume-modal'); toggleMobileMenu()" class="w-full py-2.5 rounded-lg text-sm font-medium bg-white/10 text-white text-center">
+                    <i class="fas fa-file-pdf mr-2 text-accent"></i> View CV Overview
+                </button>
+                <a href="mailto:accameetbansal@gmail.com" class="w-full py-2.5 rounded-lg text-sm font-semibold bg-accent text-navy-950 text-center">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-36 pb-24 md:pt-48 md:pb-36 overflow-hidden glow-radial grid-bg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+            
+            <!-- Availability Badge -->
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/80 border border-white/10 text-xs sm:text-sm font-medium mb-8 backdrop-blur-md shadow-lg">
+                <span class="flex h-2.5 w-2.5 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent"></span>
+                </span>
+                <span class="text-slate-300">Available for Analyst &amp; Corporate Finance Opportunities (UK / Global)</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
+                Meet Bansal
+            </h1>
+            
+            <p class="text-xl sm:text-2xl lg:text-3xl font-heading font-medium text-slate-300 mb-6 max-w-3xl mx-auto">
+                Financial Analyst <span class="text-accent">&amp;</span> ACCA Affiliate
+            </p>
+
+            <p class="text-base sm:text-lg text-slate-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                MSc Finance Candidate at <strong class="text-slate-200">Durham University</strong> | CFA Level 1 Candidate (Feb 2026).<br>
+                Synthesizing IFRS statutory reporting, DCF valuation, and quantitative metrics into actionable strategic insights.
+            </p>
+
+            <!-- Action CTAs -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#research" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-accent text-navy-950 font-semibold hover:bg-accent-hover transition-all shadow-lg shadow-accent/25 flex items-center justify-center gap-2.5">
+                    <i class="fas fa-chart-line text-sm"></i> Explore Equity Research
+                </a>
+                <button onclick="openModal('resume-modal')" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium border border-white/10 hover:border-white/25 transition-all backdrop-blur-md flex items-center justify-center gap-2">
+                    <i class="fas fa-file-lines text-slate-400"></i> Executive Resume
+                </button>
+                <button onclick="copyToClipboard('accameetbansal@gmail.com', 'Email address copied!')" class="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white border border-white/10 transition-all flex items-center justify-center gap-2" title="Copy Email">
+                    <i class="fas fa-copy text-accent text-sm"></i> Copy Email
+                </button>
+            </div>
+
+            <!-- Metric Highlight Badges -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-4xl mx-auto text-left">
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="text-accent font-heading font-bold text-2xl mb-1">MSc Finance</div>
+                    <div class="text-xs text-slate-400">Durham University (Top 100 Global)</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="text-accent font-heading font-bold text-2xl mb-1">ACCA</div>
+                    <div class="text-xs text-slate-400">Affiliate (All 13/14 Papers Cleared)</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="text-accent font-heading font-bold text-2xl mb-1">CFA L1</div>
+                    <div class="text-xs text-slate-400">Candidate (Registered Feb 2026)</div>
+                </div>
+                <div class="glass-card p-4 rounded-xl">
+                    <div class="text-accent font-heading font-bold text-2xl mb-1">+15%</div>
+                    <div class="text-xs text-slate-400">Turnaround Process Efficiency</div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Research Section -->
+    <section id="research" class="py-24 px-4 sm:px-6 relative border-t border-white/5">
+        <div class="max-w-6xl mx-auto">
+            
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold text-accent uppercase tracking-widest bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
+                    Oxford Brookes University RAP Project
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white mt-4 mb-3">
+                    Comparative Financial &amp; Strategic Analysis
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-accent to-emerald-600 mx-auto rounded-full"></div>
+                <p class="mt-4 text-slate-400 max-w-2xl mx-auto text-base">
+                    A rigorous 2022–2024 equity evaluation of global beverage titans: <strong class="text-slate-200">The Coca-Cola Company</strong> versus <strong class="text-slate-200">PepsiCo, Inc.</strong>
+                </p>
+            </div>
+
+            <!-- Executive Summary Pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-white mb-2">Capital Efficiency (ROCE)</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        PepsiCo sustained superior capital efficiency with ROCE peaking above <strong class="text-slate-200">18.9% in 2024</strong>, leveraging faster working capital turnover and high-velocity snacks (Frito-Lay) to offset margin pressures.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-white mb-2">Pricing Power &amp; Moat</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Coca-Cola maintained unrivaled gross margins (<strong class="text-slate-200">60.4%</strong>) and operating margin (<strong class="text-slate-200">29.2%</strong>), validating consumer inelasticity and its high-margin concentrate licensing model.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-scale-balanced"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-white mb-2">ESG &amp; Packaging Regulations</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Both firms face escalating OPEX risks from EU/UK Extended Producer Responsibility (EPR) mandates and single-use plastic taxes, requiring substantial capex reallocation into rPET streams.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interactive Visualization Console -->
+            <div id="data-model" class="glass-card rounded-2xl p-6 sm:p-8 shadow-2xl mb-16 border border-white/10">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6 pb-6 border-b border-white/10">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-accent animate-pulse"></span>
+                            <h3 class="font-heading font-bold text-2xl text-white">Interactive Ratio Visualizer (2022 - 2024)</h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-400 mt-1">
+                            Click metric tabs to analyze Dupont components, capital allocation, and profitability dynamics.
+                        </p>
+                    </div>
+
+                    <!-- Metric Selector Tabs -->
+                    <div class="flex flex-wrap gap-2 bg-navy-950/80 p-1.5 rounded-xl border border-white/10">
+                        <button onclick="switchChartMetric('roce')" id="tab-roce" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-accent text-navy-950 transition-all">
+                            ROCE %
+                        </button>
+                        <button onclick="switchChartMetric('grossMargin')" id="tab-grossMargin" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all">
+                            Gross Margin %
+                        </button>
+                        <button onclick="switchChartMetric('operatingMargin')" id="tab-operatingMargin" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all">
+                            Operating Margin %
+                        </button>
+                        <button onclick="switchChartMetric('assetTurnover')" id="tab-assetTurnover" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all">
+                            Asset Turnover (x)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Canvas Wrapper -->
+                <div class="relative h-80 sm:h-96 w-full">
+                    <canvas id="financialChart"></canvas>
+                </div>
+
+                <!-- Dynamic Analyst Commentary Box -->
+                <div class="mt-6 p-4 rounded-xl bg-slate-900/90 border border-white/5 flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-accent/20 text-accent flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <i class="fas fa-lightbulb text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-accent block mb-0.5">Analyst Takeaway</span>
+                        <p id="metric-commentary" class="text-sm text-slate-300 leading-relaxed">
+                            PepsiCo consistently generated superior Return on Capital Employed (17.6% - 18.9%), fueled by heavy snack volume and asset efficiency, while Coca-Cola’s capital-intensive bottler re-franchising transitions impacted its capital base.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Project Deliverables Cards -->
+            <div class="mb-4">
+                <h3 class="font-heading font-bold text-xl text-white mb-6 flex items-center gap-2">
+                    <i class="fas fa-folder-open text-accent"></i> Project Deliverables &amp; Documentation
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Doc 1 -->
+                    <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-accent/40 transition-all">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-lg">
+                                    <i class="fas fa-file-alt"></i>
+                                </span>
+                                <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 bg-white/5 px-2.5 py-1 rounded">
+                                    7,500 Words
+                                </span>
+                            </div>
+                            <h4 class="font-heading font-bold text-lg text-white mb-2">Research &amp; Analysis Report</h4>
+                            <p class="text-sm text-slate-400 mb-6">
+                                Full Oxford Brookes University financial evaluation, applying PESTEL, Porter's Five Forces, and detailed ratio decomposition under IFRS/US GAAP.
+                            </p>
+                        </div>
+                        <button onclick="openModal('report-modal')" class="w-full py-2.5 px-4 rounded-lg bg-white/10 hover:bg-accent hover:text-navy-950 text-white font-medium text-xs sm:text-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-eye"></i> View Executive Abstract
+                        </button>
+                    </div>
+
+                    <!-- Doc 2 -->
+                    <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-accent/40 transition-all">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-lg">
+                                    <i class="fas fa-file-powerpoint"></i>
+                                </span>
+                                <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 bg-white/5 px-2.5 py-1 rounded">
+                                    15 Slides
+                                </span>
+                            </div>
+                            <h4 class="font-heading font-bold text-lg text-white mb-2">Executive Presentation Deck</h4>
+                            <p class="text-sm text-slate-400 mb-6">
+                                Visual presentation tailored for executive stakeholders, distilling complex multi-year balance sheet movements into actionable findings.
+                            </p>
+                        </div>
+                        <button onclick="openModal('deck-modal')" class="w-full py-2.5 px-4 rounded-lg bg-white/10 hover:bg-accent hover:text-navy-950 text-white font-medium text-xs sm:text-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-images"></i> View Presentation Highlights
+                        </button>
+                    </div>
+
+                    <!-- Doc 3 -->
+                    <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-accent/40 transition-all">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </span>
+                                <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 bg-white/5 px-2.5 py-1 rounded">
+                                    Self Reflection
+                                </span>
+                            </div>
+                            <h4 class="font-heading font-bold text-lg text-white mb-2">Skills &amp; Learning Statement</h4>
+                            <p class="text-sm text-slate-400 mb-6">
+                                Critical self-reflection on research methodology, accounting judgment hurdles, ethical considerations, and personal leadership development.
+                            </p>
+                        </div>
+                        <button onclick="openModal('sls-modal')" class="w-full py-2.5 px-4 rounded-lg bg-white/10 hover:bg-accent hover:text-navy-950 text-white font-medium text-xs sm:text-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-book-reader"></i> Read SLS Reflection
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Technical Projects (Finance-Tech Bridge) -->
+    <section id="projects" class="py-20 px-4 sm:px-6 bg-slate-950/60 border-t border-b border-white/5 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold text-accent uppercase tracking-widest bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
+                    Software &amp; Analytical Engineering
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white mt-4 mb-2">Technical Web Projects</h2>
+                <p class="text-slate-400 text-sm max-w-xl mx-auto">
+                    Demonstrating cross-functional execution by pairing financial modeling rigor with full-stack web architecture.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto glass-card rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row gap-8 items-center border border-white/10 hover:border-accent/30 transition-all">
+                <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-accent/20 to-blue-500/20 border border-accent/30 text-accent flex items-center justify-center text-4xl flex-shrink-0 shadow-lg">
+                    <i class="fas fa-cubes"></i>
+                </div>
+                <div class="flex-grow">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <h3 class="text-2xl font-bold font-heading text-white">Manage Me</h3>
+                        <span class="text-xs font-semibold bg-emerald-500/20 text-accent px-3 py-1 rounded-full border border-emerald-500/30 flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span> Live in Production
+                        </span>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        A modern productivity web application engineered to optimize academic schedule allocations and deadline forecasting for university students. Employs quantitative prioritization algorithms, reactive state management, and continuous CI/CD deployment on Vercel.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-2 mb-6">
+                        <span class="px-2.5 py-1 rounded bg-white/5 text-slate-300 text-xs font-mono">React / Next.js</span>
+                        <span class="px-2.5 py-1 rounded bg-white/5 text-slate-300 text-xs font-mono">Tailwind CSS</span>
+                        <span class="px-2.5 py-1 rounded bg-white/5 text-slate-300 text-xs font-mono">Vercel Cloud</span>
+                        <span class="px-2.5 py-1 rounded bg-white/5 text-slate-300 text-xs font-mono">Algorithmic Scheduling</span>
+                    </div>
+                    <a href="https://manageme-three.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-navy-950 font-semibold text-xs sm:text-sm hover:bg-accent-hover transition-all shadow-md shadow-accent/20">
+                        Launch Live Application <i class="fas fa-external-link-alt text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience Section -->
+    <section id="experience" class="py-24 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold text-accent uppercase tracking-widest bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
+                    Track Record
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white mt-4 mb-2">Professional Experience</h2>
+                <div class="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Timeline Column -->
+                <div class="lg:col-span-2 space-y-8">
+                    
+                    <!-- Role 1 -->
+                    <div class="relative pl-8 sm:pl-10 border-l-2 border-accent">
+                        <div class="absolute w-4 h-4 bg-accent rounded-full -left-[9px] top-1.5 ring-4 ring-navy-950"></div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold text-accent tracking-widest uppercase">Sep 2024 – Sep 2025</span>
+                            <span class="text-xs bg-white/5 px-2.5 py-0.5 rounded text-slate-400">1 Year</span>
+                        </div>
+                        <h3 class="text-xl font-bold font-heading text-white">Accounts &amp; IFRS Trainee</h3>
+                        <h4 class="text-sm font-medium text-slate-400 mb-4">United Corporate Accounting and Taxation Services Pvt. Ltd. | India</h4>
+                        <ul class="space-y-2.5 text-sm text-slate-300">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-circle-check text-accent text-xs mt-1 flex-shrink-0"></i>
+                                <span>Prepared, reviewed, and finalized financial statements in strict compliance with <strong>IFRS</strong> and statutory standards for diverse corporate clients.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-circle-check text-accent text-xs mt-1 flex-shrink-0"></i>
+                                <span>Executed multi-ledger reconciliations across AP, AR, bank, and verified payroll ledger entries with zero variance tolerance.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-circle-check text-accent text-xs mt-1 flex-shrink-0"></i>
+                                <span>Re-engineered client procurement and validation procedures, driving a <strong>15% reduction in reconciliation turnaround time</strong>.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Role 2 -->
+                    <div class="relative pl-8 sm:pl-10 border-l-2 border-slate-700">
+                        <div class="absolute w-4 h-4 bg-slate-600 rounded-full -left-[9px] top-1.5 ring-4 ring-navy-950"></div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <span class="text-xs font-bold text-slate-400 tracking-widest uppercase">Feb 2023 – Aug 2024</span>
+                            <span class="text-xs bg-white/5 px-2.5 py-0.5 rounded text-slate-400">1.5 Years</span>
+                        </div>
+                        <h3 class="text-xl font-bold font-heading text-white">Tax and Accounts Associate</h3>
+                        <h4 class="text-sm font-medium text-slate-400 mb-4">CA Aditya Karir &amp; Associates | India</h4>
+                        <ul class="space-y-2.5 text-sm text-slate-300">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-circle-check text-slate-500 text-xs mt-1 flex-shrink-0"></i>
+                                <span>Administered domestic and international accounting engagements, executing end-to-end bookkeeping, trial balances, and audit prep.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-circle-check text-slate-500 text-xs mt-1 flex-shrink-0"></i>
+                                <span>Prepared and filed statutory corporate income tax returns and Goods and Services Tax (GST) submissions adhering to stringent deadlines.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fas fa-circle-check text-slate-500 text-xs mt-1 flex-shrink-0"></i>
+                                <span>Collaborated directly with senior Chartered Accountants and cross-border teams to deliver audit-ready workpapers.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Competencies & Credentials Sidebar -->
+                <div class="space-y-6">
+                    <div class="glass-card rounded-2xl p-6 border border-white/10">
+                        <h3 class="font-heading font-bold text-lg text-white mb-4 flex items-center gap-2 pb-2 border-b border-white/10">
+                            <i class="fas fa-award text-accent"></i> Core Competencies
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-medium text-slate-200 border border-white/5">IFRS Reporting</span>
+                            <span class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-medium text-slate-200 border border-white/5">Financial Modelling</span>
+                            <span class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-medium text-slate-200 border border-white/5">DCF Valuation</span>
+                            <span class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-medium text-slate-200 border border-white/5">Ratio Decomposition</span>
+                            <span class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-medium text-slate-200 border border-white/5">Working Capital Mgt</span>
+                            <span class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-medium text-slate-200 border border-white/5">Tax &amp; GST Compliance</span>
+                            <span class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-medium text-slate-200 border border-white/5">PESTEL &amp; SWOT</span>
+                        </div>
+
+                        <h3 class="font-heading font-bold text-lg text-white mt-8 mb-4 flex items-center gap-2 pb-2 border-b border-white/10">
+                            <i class="fas fa-screwdriver-wrench text-blue-400"></i> Technical Systems
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-emerald-500/10 text-accent rounded-lg text-xs font-semibold border border-emerald-500/20">
+                                <i class="fas fa-file-excel mr-1"></i> MS Excel (Advanced)
+                            </span>
+                            <span class="px-3 py-1.5 bg-blue-500/10 text-blue-300 rounded-lg text-xs font-semibold border border-blue-500/20">
+                                <i class="fas fa-certificate mr-1"></i> Xero (Certified)
+                            </span>
+                            <span class="px-3 py-1.5 bg-purple-500/10 text-purple-300 rounded-lg text-xs font-semibold border border-purple-500/20">
+                                <i class="fas fa-calculator mr-1"></i> QuickBooks
+                            </span>
+                            <span class="px-3 py-1.5 bg-slate-500/10 text-slate-300 rounded-lg text-xs font-semibold border border-slate-500/20">
+                                <i class="fab fa-js mr-1"></i> Chart.js / JS
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Qualifications Matrix -->
+    <section id="qualifications" class="py-20 px-4 sm:px-6 bg-slate-950/60 border-t border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold text-accent uppercase tracking-widest bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
+                    Academic Pedigree
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-heading text-white mt-4 mb-2">Qualifications &amp; Education</h2>
+                <div class="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs font-bold text-accent uppercase tracking-wider mb-2">2025 – 2026</div>
+                        <h3 class="font-heading font-bold text-lg text-white mb-1">MSc Finance</h3>
+                        <h4 class="text-sm text-slate-400 mb-3">Durham University, UK</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Pursuing advanced asset pricing, corporate finance, financial econometric analysis, and portfolio risk management.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-white/10 flex items-center gap-1.5 text-xs text-accent">
+                        <i class="fas fa-check-circle"></i> In Progress
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs font-bold text-accent uppercase tracking-wider mb-2">Certified</div>
+                        <h3 class="font-heading font-bold text-lg text-white mb-1">ACCA Affiliate</h3>
+                        <h4 class="text-sm text-slate-400 mb-3">ACCA, UK</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Completed all professional and applied knowledge papers covering Strategic Business Leader, Reporting (SBR), and Audit.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-white/10 flex items-center gap-1.5 text-xs text-accent">
+                        <i class="fas fa-badge-check"></i> Passed All Examinations
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs font-bold text-accent uppercase tracking-wider mb-2">Registered Candidate</div>
+                        <h3 class="font-heading font-bold text-lg text-white mb-1">CFA Level 1</h3>
+                        <h4 class="text-sm text-slate-400 mb-3">CFA Institute</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Registered for the February 2026 examination window. Focusing on quantitative methods, equity valuation, and ethical standards.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-white/10 flex items-center gap-1.5 text-xs text-accent">
+                        <i class="fas fa-calendar-check"></i> Feb 2026 Window
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs font-bold text-accent uppercase tracking-wider mb-2">Undergraduate</div>
+                        <h3 class="font-heading font-bold text-lg text-white mb-1">BSc Applied Accounting</h3>
+                        <h4 class="text-sm text-slate-400 mb-3">Oxford Brookes University</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Degree awarded via Research &amp; Analysis Project evaluating corporate financial statements and strategic competitiveness.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-white/10 flex items-center gap-1.5 text-xs text-accent">
+                        <i class="fas fa-award"></i> Degree Conferred
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 text-slate-400 py-16 border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="w-8 h-8 rounded-lg bg-accent text-navy-950 font-bold font-heading flex items-center justify-center text-sm">
+                            MB
+                        </span>
+                        <span class="font-heading font-bold text-xl text-white">Meet Bansal</span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-sm">
+                        Financial Analyst &amp; ACCA Affiliate specializing in corporate financial analysis, IFRS reporting, and financial modeling.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap justify-center items-center gap-6 text-sm">
+                    <a href="mailto:accameetbansal@gmail.com" class="hover:text-accent transition-colors flex items-center gap-2">
+                        <i class="fas fa-envelope text-accent"></i> accameetbansal@gmail.com
+                    </a>
+                    <span class="text-slate-700 hidden sm:inline">|</span>
+                    <a href="tel:+447596085818" class="hover:text-accent transition-colors flex items-center gap-2">
+                        <i class="fas fa-phone text-accent"></i> +44 7596 085818
+                    </a>
+                    <span class="text-slate-700 hidden sm:inline">|</span>
+                    <span class="flex items-center gap-2">
+                        <i class="fas fa-map-marker-alt text-accent"></i> Durham, United Kingdom
+                    </span>
+                </div>
+
+                <div class="flex gap-3">
+                    <a href="https://linkedin.com/in/meetbansal" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:bg-accent hover:border-accent hover:text-navy-950 transition-all text-base" title="LinkedIn Profile">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:accameetbansal@gmail.com" class="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:bg-accent hover:border-accent hover:text-navy-950 transition-all text-base" title="Email Meet">
+                        <i class="fas fa-paper-plane"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-8 text-center text-xs text-slate-500">
+                &copy; 2026 Meet Bansal. All rights reserved. Designed for finance recruitment &amp; institutional equity analysis.
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: Executive Abstract (Full Report) -->
+    <div id="report-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-card max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-2xl p-6 sm:p-8 border border-white/15 shadow-2xl relative">
+            <button onclick="closeModal('report-modal')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider mb-2">
+                <i class="fas fa-file-lines"></i> Research Abstract
+            </div>
+            <h3 class="font-heading font-bold text-2xl text-white mb-4">
+                Coca-Cola Co. vs. PepsiCo Inc. (2022–2024)
+            </h3>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+                <p>
+                    <strong>Executive Objective:</strong> This research project provides an empirical comparison between the two preeminent FMCG beverage conglomerates to determine how varying business models (Coca-Cola's asset-light concentrate licensing vs. PepsiCo's integrated food/beverage distribution) managed high-inflation shocks and ESG packaging mandates.
+                </p>
+                <div class="bg-navy-950/80 p-4 rounded-xl border border-white/10">
+                    <h4 class="font-bold text-white mb-2 text-xs uppercase tracking-wider">Methodology &amp; Standards:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-xs text-slate-400">
+                        <li>Data audited from Form 10-K filings filed with the SEC (2022–2024).</li>
+                        <li>DuPont 3-Tier Decomposition (Operating Margin, Asset Turnover, Financial Leverage).</li>
+                        <li>PESTEL macroeconomic scanning with emphasis on sugar taxes and EU Extended Producer Responsibility.</li>
+                    </ul>
+                </div>
+                <p>
+                    <strong>Primary Conclusion:</strong> While PepsiCo delivered a consistently higher ROCE (18.9% in 2024) through inventory velocity in snacks, Coca-Cola demonstrated superior moat defense, sustaining a 29.2% operating margin due to brand inelasticity and minimal packaging cost exposure.
+                </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/10 flex justify-end gap-3">
+                <button onclick="closeModal('report-modal')" class="px-5 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold">
+                    Close
+                </button>
+                <a href="mailto:accameetbansal@gmail.com?subject=Request%20for%20Full%20Coca-Cola%20vs%20PepsiCo%20Report" class="px-5 py-2.5 rounded-lg bg-accent text-navy-950 text-xs font-semibold hover:bg-accent-hover transition-all">
+                    Request Full 7,500w Document
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: Executive Presentation Deck -->
+    <div id="deck-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-card max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-2xl p-6 sm:p-8 border border-white/15 shadow-2xl relative">
+            <button onclick="closeModal('deck-modal')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-2 text-blue-400 text-xs font-bold uppercase tracking-wider mb-2">
+                <i class="fas fa-presentation-screen"></i> Presentation Deck Summary
+            </div>
+            <h3 class="font-heading font-bold text-2xl text-white mb-4">
+                15-Slide Executive Pitch Deck
+            </h3>
+            <div class="space-y-3 text-sm text-slate-300">
+                <div class="p-3 bg-white/5 rounded-xl border border-white/5 flex gap-3 items-center">
+                    <span class="w-8 h-8 rounded bg-accent/20 text-accent font-bold flex items-center justify-center text-xs flex-shrink-0">1-4</span>
+                    <div>
+                        <div class="text-white font-semibold text-xs">Macroeconomic Context &amp; Industry Scope</div>
+                        <div class="text-xs text-slate-400">Commodity price spikes, supply chain re-shoring, and currency fluctuations.</div>
+                    </div>
+                </div>
+                <div class="p-3 bg-white/5 rounded-xl border border-white/5 flex gap-3 items-center">
+                    <span class="w-8 h-8 rounded bg-blue-500/20 text-blue-400 font-bold flex items-center justify-center text-xs flex-shrink-0">5-9</span>
+                    <div>
+                        <div class="text-white font-semibold text-xs">Ratio Deep-Dive &amp; Visual DuPont Analysis</div>
+                        <div class="text-xs text-slate-400">Gross margin divergence, ROCE drivers, and interest coverage ratios.</div>
+                    </div>
+                </div>
+                <div class="p-3 bg-white/5 rounded-xl border border-white/5 flex gap-3 items-center">
+                    <span class="w-8 h-8 rounded bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-xs flex-shrink-0">10-15</span>
+                    <div>
+                        <div class="text-white font-semibold text-xs">Strategic Roadmaps &amp; Investment Verdict</div>
+                        <div class="text-xs text-slate-400">ESG compliance costs, capital expenditure projections, and final rating summary.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/10 flex justify-end gap-3">
+                <button onclick="closeModal('deck-modal')" class="px-5 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold">
+                    Close
+                </button>
+                <a href="mailto:accameetbansal@gmail.com?subject=Request%20for%20Presentation%20Deck" class="px-5 py-2.5 rounded-lg bg-accent text-navy-950 text-xs font-semibold hover:bg-accent-hover transition-all">
+                    Request Presentation File
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: Skills & Learning Statement -->
+    <div id="sls-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-card max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-2xl p-6 sm:p-8 border border-white/15 shadow-2xl relative">
+            <button onclick="closeModal('sls-modal')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
+                <i class="fas fa-graduation-cap"></i> Academic Statement
+            </div>
+            <h3 class="font-heading font-bold text-2xl text-white mb-4">
+                Skills &amp; Learning Statement (SLS)
+            </h3>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+                <p>
+                    The Skills &amp; Learning Statement constitutes the core reflective component of the Oxford Brookes University degree submission. It examines:
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-xs text-slate-400 bg-white/5 p-4 rounded-xl">
+                    <li><strong>Consultative Mentorship:</strong> Interaction with academic mentors and adjusting research scope following critique of ratio biases.</li>
+                    <li><strong>Information Evaluation:</strong> Navigating non-GAAP reconciliation discrepancies between Coca-Cola and PepsiCo disclosures.</li>
+                    <li><strong>Ethical Judgment:</strong> Evaluating how ESG greenwashing regulations hold corporate executives accountable in annual reports.</li>
+                </ul>
+                <p class="text-xs text-slate-400 italic">
+                    "This reflection helped hone my capability to synthesize raw numerical filings into objective, bias-free corporate financial evaluations."
+                </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/10 flex justify-end">
+                <button onclick="closeModal('sls-modal')" class="px-5 py-2.5 rounded-lg bg-accent text-navy-950 text-xs font-semibold hover:bg-accent-hover">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 4: Executive Resume Quick View -->
+    <div id="resume-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-card max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-2xl p-6 sm:p-8 border border-white/15 shadow-2xl relative">
+            <button onclick="closeModal('resume-modal')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider mb-1">
+                <i class="fas fa-user-tie"></i> Profile Summary
+            </div>
+            <h3 class="font-heading font-bold text-2xl text-white mb-1">
+                Meet Bansal | Candidate Profile
+            </h3>
+            <p class="text-xs text-slate-400 mb-6">MSc Finance (Durham) | ACCA Affiliate | CFA L1 Candidate</p>
+            
+            <div class="space-y-4 text-xs sm:text-sm text-slate-300">
+                <div class="p-3 bg-white/5 rounded-xl border border-white/5">
+                    <span class="font-bold text-white block mb-1">Primary Value Proposition:</span>
+                    Combines strong technical accounting fundamentals (IFRS/statutory reporting) with advanced financial valuation and full-stack data modeling capabilities.
+                </div>
+
+                <div>
+                    <span class="font-bold text-white block mb-1">Key Experience Highlights:</span>
+                    <ul class="list-disc list-inside space-y-1 text-slate-400">
+                        <li>Streamlined accounting and procurement verification by 15% at United Corporate Accounting.</li>
+                        <li>Audited and drafted IFRS statements, multi-currency bank accounts, and payroll ledgers.</li>
+                        <li>Filed statutory corporate tax and GST submissions at CA Aditya Karir & Associates.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="font-bold text-white block mb-1">Contact Details:</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-400">
+                        <div><i class="fas fa-envelope text-accent mr-1"></i> accameetbansal@gmail.com</div>
+                        <div><i class="fas fa-phone text-accent mr-1"></i> +44 7596 085818</div>
+                        <div><i class="fas fa-map-marker-alt text-accent mr-1"></i> Durham, United Kingdom</div>
+                        <div><i class="fab fa-linkedin text-accent mr-1"></i> linkedin.com/in/meetbansal</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center">
+                <button onclick="copyToClipboard('accameetbansal@gmail.com', 'Email copied to clipboard!')" class="text-xs text-accent hover:underline">
+                    <i class="fas fa-copy mr-1"></i> Copy Email
+                </button>
+                <div class="flex gap-2">
+                    <button onclick="closeModal('resume-modal')" class="px-4 py-2 rounded-lg bg-white/10 text-white text-xs font-semibold">
+                        Close
+                    </button>
+                    <a href="mailto:accameetbansal@gmail.com?subject=Interview%20Inquiry%20-%20Meet%20Bansal" class="px-4 py-2 rounded-lg bg-accent text-navy-950 text-xs font-semibold hover:bg-accent-hover">
+                        Contact via Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script & Chart Logic -->
+    <script>
+        const financialMetrics = {
+            roce: {
+                label: 'Return on Capital Employed (ROCE %)',
+                unit: '%',
+                coke: [15.0, 15.3, 13.0],
+                pepsi: [17.6, 17.4, 18.9],
+                commentary: "PepsiCo consistently generated superior Return on Capital Employed (17.6% - 18.9%), fueled by heavy snack volume and asset efficiency, while Coca-Cola's capital-intensive bottler re-franchising transitions impacted its capital base."
+            },
+            grossMargin: {
+                label: 'Gross Profit Margin (%)',
+                unit: '%',
+                coke: [58.1, 59.5, 60.4],
+                pepsi: [53.0, 54.2, 54.8],
+                commentary: "Coca-Cola sustained industry-leading gross margins peaking at 60.4% in 2024, reflecting formidable brand inelasticity, premium syrup pricing power, and an asset-light concentrate licensing architecture."
+            },
+            operatingMargin: {
+                label: 'Operating Profit Margin (%)',
+                unit: '%',
+                coke: [28.5, 28.9, 29.2],
+                pepsi: [13.3, 13.0, 13.7],
+                commentary: "Coca-Cola generated more than double the operating margin of PepsiCo (~29% vs ~13%), demonstrating high operational leverage with minimal direct packaging and distribution overhead."
+            },
+            assetTurnover: {
+                label: 'Total Asset Turnover Ratio (x)',
+                unit: 'x',
+                coke: [0.46, 0.47, 0.48],
+                pepsi: [0.94, 0.93, 0.92],
+                commentary: "PepsiCo nearly doubled Coca-Cola's asset turnover (0.92x vs 0.48x), confirming the DuPont trade-off: PepsiCo drives capital returns via inventory turnover, while Coca-Cola drives returns via pure margin extraction."
+            }
+        };
+
+        let financialChartInstance = null;
+        let activeMetric = 'roce';
+
+        document.addEventListener("DOMContentLoaded", function() {
+            initFinancialChart();
+        });
+
+        function initFinancialChart() {
+            const ctx = document.getElementById('financialChart').getContext('2d');
+            const data = financialMetrics[activeMetric];
+
+            financialChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2022', '2023', '2024'],
+                    datasets: [
+                        {
+                            label: 'The Coca-Cola Company',
+                            data: data.coke,
+                            backgroundColor: '#10b981', // Accent Emerald
+                            borderRadius: 6,
+                            barPercentage: 0.65,
+                            categoryPercentage: 0.75,
+                        },
+                        {
+                            label: 'PepsiCo, Inc.',
+                            data: data.pepsi,
+                            backgroundColor: '#3b82f6', // Corporate Slate/Blue
+                            borderRadius: 6,
+                            barPercentage: 0.65,
+                            categoryPercentage: 0.75,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 600,
+                        easing: 'easeOutQuart'
+                    },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#cbd5e1',
+                                font: { family: 'Inter', size: 12, weight: 500 },
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#020617',
+                            borderColor: 'rgba(255, 255, 255, 0.15)',
+                            borderWidth: 1,
+                            titleFont: { family: 'Outfit', size: 14, weight: 'bold' },
+                            bodyFont: { family: 'Inter', size: 13 },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    const unit = financialMetrics[activeMetric].unit;
+                                    return context.dataset.label + ': ' + context.parsed.y + unit;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.05)',
+                                drawBorder: false,
+                            },
+                            ticks: {
+                                color: '#94a3b8',
+                                font: { family: 'Inter', size: 11 },
+                                callback: function(value) {
+                                    return value + financialMetrics[activeMetric].unit;
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false,
+                            },
+                            ticks: {
+                                color: '#94a3b8',
+                                font: { family: 'Inter', size: 12, weight: 600 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function switchChartMetric(metricKey) {
+            if (!financialMetrics[metricKey]) return;
+            activeMetric = metricKey;
+            const data = financialMetrics[metricKey];
+
+            const tabs = ['roce', 'grossMargin', 'operatingMargin', 'assetTurnover'];
+            tabs.forEach(t => {
+                const btn = document.getElementById('tab-' + t);
+                if (t === metricKey) {
+                    btn.className = "px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-accent text-navy-950 transition-all";
+                } else {
+                    btn.className = "px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition-all";
+                }
+            });
+
+            const commentaryEl = document.getElementById('metric-commentary');
+            commentaryEl.style.opacity = 0;
+            setTimeout(() => {
+                commentaryEl.textContent = data.commentary;
+                commentaryEl.style.opacity = 1;
+            }, 150);
+
+            financialChartInstance.data.datasets[0].data = data.coke;
+            financialChartInstance.data.datasets[1].data = data.pepsi;
+            financialChartInstance.options.scales.y.ticks.callback = function(value) {
+                return value + data.unit;
+            };
+            financialChartInstance.update();
+        }
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const openModals = document.querySelectorAll('[id$="-modal"]:not(.hidden)');
+                openModals.forEach(m => closeModal(m.id));
+            }
+        });
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = 'fas fa-xmark text-xl';
+            } else {
+                menu.classList.add('hidden');
+                icon.className = 'fas fa-bars text-xl';
+            }
+        }
+
+        function copyToClipboard(text, message) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(message);
+            }).catch(() => {
+                showToast('Copied: ' + text);
+            });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-message');
+            msgEl.textContent = msg;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
