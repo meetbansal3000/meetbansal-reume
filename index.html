@@ -175,6 +175,9 @@
         const Eye = (props) => (
             <Icon path={<><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></>} {...props} />
         );
+        const Check = (props) => (
+            <Icon path={<><polyline points="20 6 9 17 4 12" /></>} {...props} />
+        );
 
         // --- Main Application Component ---
         function App() {
@@ -182,6 +185,7 @@
             const [toastMessage, setToastMessage] = useState('');
             const [activePdfDoc, setActivePdfDoc] = useState(null);
             const [activeMetric, setActiveMetric] = useState('roce');
+            const [isCopied, setIsCopied] = useState(false);
             const chartCanvasRef = useRef(null);
             const chartInstanceRef = useRef(null);
 
@@ -194,7 +198,11 @@
 
             const copyEmail = () => {
                 navigator.clipboard.writeText('accameetbansal@gmail.com').then(() => {
+                    setIsCopied(true);
                     showToast('Email address copied to clipboard!');
+                    setTimeout(() => {
+                        setIsCopied(false);
+                    }, 2000);
                 }).catch(() => {
                     showToast('Email: accameetbansal@gmail.com');
                 });
@@ -1105,13 +1113,32 @@
 
                                 {/* Contact Details */}
                                 <div className="flex flex-wrap justify-center items-center gap-6 text-sm">
-                                    <a
-                                        href="mailto:accameetbansal@gmail.com"
-                                        className="hover:text-emerald-400 transition-colors flex items-center gap-2"
-                                    >
-                                        <Mail className="w-4 h-4 text-emerald-400" />
-                                        <span>accameetbansal@gmail.com</span>
-                                    </a>
+                                    <div className="flex items-center gap-2">
+                                        <a
+                                            href="mailto:accameetbansal@gmail.com"
+                                            className="hover:text-emerald-400 transition-colors flex items-center gap-2 text-slate-300"
+                                            title="Click to send an email"
+                                        >
+                                            <Mail className="w-4 h-4 text-emerald-400" />
+                                            <span>accameetbansal@gmail.com</span>
+                                        </a>
+                                        <button
+                                            onClick={copyEmail}
+                                            className={`p-1.5 rounded-lg border transition-all flex items-center justify-center ${
+                                                isCopied
+                                                    ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 scale-105'
+                                                    : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-emerald-500/40'
+                                            }`}
+                                            title={isCopied ? 'Copied to clipboard!' : 'Copy Email to Clipboard'}
+                                            aria-label="Copy Email"
+                                        >
+                                            {isCopied ? (
+                                                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                                            ) : (
+                                                <Copy className="w-3.5 h-3.5" />
+                                            )}
+                                        </button>
+                                    </div>
                                     <span className="text-slate-700 hidden sm:inline">|</span>
                                     <a
                                         href="tel:+447596085818"
@@ -1141,11 +1168,15 @@
                                     </a>
                                     <button
                                         onClick={copyEmail}
-                                        className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-slate-950 hover:bg-emerald-400 hover:border-emerald-400 transition-all text-lg shadow-md"
-                                        title="Copy Email Address"
+                                        className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-all text-lg shadow-md ${
+                                            isCopied
+                                                ? 'bg-emerald-400 border-emerald-400 text-slate-950 scale-105'
+                                                : 'bg-white/5 border-white/10 text-slate-300 hover:text-slate-950 hover:bg-emerald-400 hover:border-emerald-400'
+                                        }`}
+                                        title={isCopied ? 'Email Copied!' : 'Copy Email Address'}
                                         aria-label="Copy Email"
                                     >
-                                        <Copy className="w-5 h-5" />
+                                        {isCopied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
                                     </button>
                                 </div>
                             </div>
