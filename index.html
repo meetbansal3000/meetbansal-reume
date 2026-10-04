@@ -6,10 +6,10 @@
     <title>Meet Bansal | Financial Analyst & ACCA Affiliate</title>
     <meta name="description" content="Portfolio of Meet Bansal - Financial Analyst, ACCA Affiliate, and MSc Finance Candidate at Durham University. Featuring comparative equity analysis (Coca-Cola vs PepsiCo), DuPont financial modeling, and verified credentials.">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Plus Jakarta Sans, Playfair Display, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,14 +18,14 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Outfit', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
                     },
                     colors: {
                         slate: {
-                            850: '#0f172a',
-                            950: '#020617',
+                            850: '#0e1526',
+                            950: '#0a0a0c',
                         },
                         emerald: {
                             450: '#10b981',
@@ -47,45 +47,62 @@
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #020617;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0a0a0c;
             color: #f1f5f9;
         }
-        h1, h2, h3, h4, .font-heading {
-            font-family: 'Outfit', sans-serif;
+        .font-serif {
+            font-family: 'Playfair Display', Georgia, serif;
         }
-        .glow-radial {
-            background: radial-gradient(circle at 50% 12%, rgba(16, 185, 129, 0.14) 0%, transparent 68%);
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
         }
-        .grid-pattern {
-            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-            background-size: 32px 32px;
+        .ambient-radial {
+            background: radial-gradient(ellipse 85% 55% at 50% -15%, rgba(6, 78, 59, 0.22) 0%, rgba(10, 10, 12, 0) 80%);
+        }
+        .grid-mesh {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+            background-size: 36px 36px;
         }
         .glass-panel {
-            background: rgba(15, 23, 42, 0.72);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
         }
-        .glass-panel:hover {
-            border-color: rgba(16, 185, 129, 0.35);
+        .glass-panel-hover {
+            transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-panel-hover:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.038);
+            border-color: rgba(16, 185, 129, 0.28);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.65), 0 0 35px rgba(16, 185, 129, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 7px;
         }
         ::-webkit-scrollbar-track {
-            background: #020617;
+            background: #0a0a0c;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 4px;
+            background: #1c1c24;
+            border-radius: 9999px;
         }
         ::-webkit-scrollbar-thumb:hover {
             background: #10b981;
         }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-emerald-500 selection:text-slate-950 min-h-screen relative">
+<body class="antialiased selection:bg-emerald-500 selection:text-slate-950 min-h-screen bg-[#0a0a0c] text-slate-100 relative">
     <div id="root"></div>
 
     <!-- React Application Component Script -->
@@ -169,9 +186,6 @@
         const Download = (props) => (
             <Icon path={<><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></>} {...props} />
         );
-        const Clock = (props) => (
-            <Icon path={<><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></>} {...props} />
-        );
         const Eye = (props) => (
             <Icon path={<><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></>} {...props} />
         );
@@ -199,16 +213,16 @@
             const copyEmail = () => {
                 navigator.clipboard.writeText('accameetbansal@gmail.com').then(() => {
                     setIsCopied(true);
-                    showToast('Email address copied to clipboard!');
+                    showToast('Email address copied to clipboard');
                     setTimeout(() => {
                         setIsCopied(false);
                     }, 2000);
                 }).catch(() => {
-                    showToast('Email: accameetbansal@gmail.com');
+                    showToast('accameetbansal@gmail.com');
                 });
             };
 
-            // Chart Configuration
+            // SEC Form 10-K Data for Comparative Chart
             const chartDatasets = {
                 roce: {
                     label: 'Return on Capital Employed (ROCE %)',
@@ -244,18 +258,18 @@
                             {
                                 label: 'The Coca-Cola Company',
                                 data: currentData.coke,
-                                backgroundColor: '#10b981', // Vibrant Emerald
-                                borderRadius: 8,
-                                barPercentage: 0.65,
-                                categoryPercentage: 0.75,
+                                backgroundColor: '#10b981', // Subtle Emerald
+                                borderRadius: 6,
+                                barPercentage: 0.6,
+                                categoryPercentage: 0.72,
                             },
                             {
                                 label: 'PepsiCo, Inc.',
                                 data: currentData.pepsi,
-                                backgroundColor: '#0284c7', // Slate Sky Blue
-                                borderRadius: 8,
-                                barPercentage: 0.65,
-                                categoryPercentage: 0.75,
+                                backgroundColor: '#38bdf8', // Slate Cyan
+                                borderRadius: 6,
+                                barPercentage: 0.6,
+                                categoryPercentage: 0.72,
                             }
                         ]
                     },
@@ -274,23 +288,24 @@
                             legend: {
                                 position: 'top',
                                 labels: {
-                                    color: '#cbd5e1',
-                                    font: { family: 'Inter', size: 12, weight: 600 },
+                                    color: '#94a3b8',
+                                    font: { family: 'Plus Jakarta Sans', size: 12, weight: 500 },
                                     usePointStyle: true,
-                                    pointStyleWidth: 10,
-                                    padding: 20
+                                    pointStyleWidth: 8,
+                                    padding: 24
                                 }
                             },
                             tooltip: {
-                                backgroundColor: '#020617',
-                                borderColor: 'rgba(255, 255, 255, 0.15)',
+                                backgroundColor: '#0f0f14',
+                                borderColor: 'rgba(255, 255, 255, 0.08)',
                                 borderWidth: 1,
-                                titleFont: { family: 'Outfit', size: 14, weight: 'bold' },
-                                bodyFont: { family: 'Inter', size: 13 },
+                                cornerRadius: 10,
+                                titleFont: { family: 'Playfair Display', size: 13, weight: 'bold' },
+                                bodyFont: { family: 'JetBrains Mono', size: 12 },
                                 padding: 12,
                                 callbacks: {
                                     label: function(context) {
-                                        return `${context.dataset.label}: ${context.parsed.y}${currentData.unit}`;
+                                        return ` ${context.dataset.label}: ${context.parsed.y}${currentData.unit}`;
                                     }
                                 }
                             }
@@ -299,12 +314,12 @@
                             y: {
                                 beginAtZero: true,
                                 grid: {
-                                    color: 'rgba(255, 255, 255, 0.06)',
+                                    color: 'rgba(255, 255, 255, 0.03)',
                                     drawBorder: false,
                                 },
                                 ticks: {
-                                    color: '#94a3b8',
-                                    font: { family: 'Inter', size: 11 },
+                                    color: '#64748b',
+                                    font: { family: 'JetBrains Mono', size: 11 },
                                     callback: function(value) {
                                         return value + currentData.unit;
                                     }
@@ -313,8 +328,8 @@
                             x: {
                                 grid: { display: false },
                                 ticks: {
-                                    color: '#cbd5e1',
-                                    font: { family: 'Inter', size: 12, weight: 600 }
+                                    color: '#94a3b8',
+                                    font: { family: 'Plus Jakarta Sans', size: 12, weight: 500 }
                                 }
                             }
                         }
@@ -329,204 +344,216 @@
             }, [activeMetric]);
 
             return (
-                <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-slate-950">
+                <div className="min-h-screen bg-[#0a0a0c] text-slate-200 flex flex-col justify-between selection:bg-emerald-500 selection:text-slate-950 font-sans">
                     
                     {/* Toast Notification */}
                     {toastMessage && (
-                        <div className="fixed bottom-6 right-6 z-50 bg-slate-900 border border-emerald-500/50 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 animate-bounce">
-                            <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                            <span className="text-sm font-medium">{toastMessage}</span>
+                        <div className="fixed bottom-6 right-6 z-50 bg-[#121218] border border-emerald-500/40 text-slate-100 px-5 py-3 rounded-full shadow-2xl flex items-center gap-3 animate-fadeIn">
+                            <Check className="w-4 h-4 text-emerald-400" />
+                            <span className="text-xs font-mono tracking-wide">{toastMessage}</span>
                         </div>
                     )}
 
                     {/* ========================================================
-                        SECTION 1: HERO SECTION
-                        Headshot (assets/profile.jpg), Headline, Tagline, Subheading,
-                        Buttons, 4-Card Grid (MSc Finance, ACCA Affiliate, CFA Level 1, BSc Applied Accounting)
+                        TOP NAVIGATION (Fixed Glass Header)
                         ======================================================== */}
-                    <div className="relative glow-radial grid-pattern">
-                        {/* Top Navigation */}
-                        <header className="fixed top-0 left-0 right-0 z-40 bg-slate-950/85 backdrop-blur-xl border-b border-white/10">
-                            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                                <div className="flex justify-between items-center h-20">
-                                    {/* Logo */}
-                                    <a href="#" className="flex items-center gap-3 group">
-                                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-slate-950 font-bold font-heading text-lg shadow-lg shadow-emerald-500/25 group-hover:scale-105 transition-transform">
-                                            MB
-                                        </div>
-                                        <div>
-                                            <span className="font-heading font-bold text-lg text-white tracking-tight block leading-tight">
-                                                Meet Bansal
-                                            </span>
-                                            <span className="text-[11px] font-semibold text-emerald-400 uppercase tracking-wider block">
-                                                Financial Analyst
-                                            </span>
-                                        </div>
+                    <header className="fixed top-0 left-0 right-0 z-40 bg-[#0a0a0c]/80 backdrop-blur-2xl border-b border-white/[0.05]">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="flex justify-between items-center h-20">
+                                {/* Monogram Brand */}
+                                <a href="#" className="flex items-center gap-3.5 group">
+                                    <div className="w-9 h-9 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 font-serif font-semibold text-sm group-hover:border-emerald-500/50 transition-colors">
+                                        MB
+                                    </div>
+                                    <div>
+                                        <span className="font-serif font-normal text-base text-white tracking-wide block leading-tight">
+                                            Meet Bansal
+                                        </span>
+                                        <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-400 block">
+                                            Financial Analyst
+                                        </span>
+                                    </div>
+                                </a>
+
+                                {/* Desktop Navigation Links */}
+                                <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+                                    <a href="#research" className="px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider text-slate-400 hover:text-white transition-colors duration-300">
+                                        Research
                                     </a>
+                                    <a href="#projects" className="px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider text-slate-400 hover:text-white transition-colors duration-300">
+                                        Tech App
+                                    </a>
+                                    <a href="#experience" className="px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider text-slate-400 hover:text-white transition-colors duration-300">
+                                        Experience
+                                    </a>
+                                    <a href="#competencies" className="px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider text-slate-400 hover:text-white transition-colors duration-300">
+                                        Skills
+                                    </a>
+                                    <a href="#credentials" className="px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider text-slate-400 hover:text-white transition-colors duration-300">
+                                        Certifications
+                                    </a>
+                                </nav>
 
-                                    {/* Navigation Links */}
-                                    <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
-                                        <a href="#research" className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
-                                            Research
-                                        </a>
-                                        <a href="#projects" className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
-                                            Tech App
-                                        </a>
-                                        <a href="#experience" className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
-                                            Experience
-                                        </a>
-                                        <a href="#competencies" className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
-                                            Skills
-                                        </a>
-                                        <a href="#credentials" className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
-                                            Certifications
-                                        </a>
-                                    </nav>
+                                {/* Action Button (Clean Mailto execution, No target="_blank") */}
+                                <div className="hidden md:flex items-center">
+                                    <a
+                                        href="mailto:accameetbansal@gmail.com?subject=Inquiry%20-%20Meet%20Bansal"
+                                        className="px-6 py-2.5 rounded-full bg-emerald-600/90 hover:bg-emerald-500 text-white font-medium text-xs uppercase tracking-wider transition-all duration-500 ease-out shadow-lg shadow-emerald-950/40 flex items-center gap-2 border border-emerald-500/30"
+                                    >
+                                        <Mail className="w-3.5 h-3.5" />
+                                        Let's Connect
+                                    </a>
+                                </div>
 
-                                    {/* Action Button */}
-                                    <div className="hidden md:flex items-center">
-                                        <a
-                                            href="mailto:accameetbansal@gmail.com?subject=Inquiry%20-%20Meet%20Bansal"
-                                            className="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold text-sm rounded-xl transition-all shadow-md shadow-emerald-500/20 flex items-center gap-2"
-                                        >
-                                            <Mail className="w-4 h-4" />
-                                            Let's Connect
-                                        </a>
-                                    </div>
+                                {/* Mobile Menu Toggle */}
+                                <div className="flex md:hidden">
+                                    <button
+                                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                                        className="text-slate-300 hover:text-white p-2 rounded-full border border-white/5"
+                                        aria-label="Toggle navigation"
+                                    >
+                                        {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-                                    {/* Mobile Menu Toggle */}
-                                    <div className="flex md:hidden">
-                                        <button
-                                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                            className="text-slate-300 hover:text-white p-2"
-                                            aria-label="Toggle navigation"
-                                        >
-                                            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                                        </button>
-                                    </div>
+                        {/* Mobile Dropdown Menu */}
+                        {mobileMenuOpen && (
+                            <div className="md:hidden border-b border-white/[0.08] bg-[#0a0a0c]/98 backdrop-blur-2xl px-6 pt-4 pb-8 space-y-3">
+                                <a href="#research" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-xs font-mono uppercase tracking-widest text-slate-300 hover:text-emerald-400">Research</a>
+                                <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-xs font-mono uppercase tracking-widest text-slate-300 hover:text-emerald-400">Tech App</a>
+                                <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-xs font-mono uppercase tracking-widest text-slate-300 hover:text-emerald-400">Experience</a>
+                                <a href="#competencies" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-xs font-mono uppercase tracking-widest text-slate-300 hover:text-emerald-400">Skills</a>
+                                <a href="#credentials" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-xs font-mono uppercase tracking-widest text-slate-300 hover:text-emerald-400">Certifications</a>
+                                <div className="pt-4">
+                                    <a
+                                        href="mailto:accameetbansal@gmail.com?subject=Inquiry%20-%20Meet%20Bansal"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="w-full py-3 rounded-full text-xs font-mono uppercase tracking-wider font-semibold bg-emerald-600/90 text-white text-center flex items-center justify-center gap-2 border border-emerald-500/30 shadow-lg"
+                                    >
+                                        <Mail className="w-3.5 h-3.5" />
+                                        Let's Connect
+                                    </a>
+                                </div>
+                            </div>
+                        )}
+                    </header>
+
+                    {/* ========================================================
+                        SECTION 1: HERO SECTION
+                        Ambient Radial Gradient, Editorial Typography, Headshot Grayscale Hover, 4 Clean Cards
+                        ======================================================== */}
+                    <div className="relative ambient-radial grid-mesh pt-40 pb-24 md:pt-52 md:pb-36">
+                        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                            
+                            {/* Headshot: Grayscale default -> Full Color on hover */}
+                            <div className="relative mx-auto w-36 h-36 sm:w-44 sm:h-44 mb-10 group">
+                                <div className="absolute -inset-2 rounded-full bg-gradient-to-b from-white/15 via-emerald-500/20 to-transparent p-[1px] opacity-70 group-hover:opacity-100 transition-opacity duration-700">
+                                    <div className="w-full h-full rounded-full bg-[#0a0a0c]"></div>
+                                </div>
+                                <div className="absolute inset-0 rounded-full bg-emerald-500/10 blur-xl group-hover:bg-emerald-500/20 transition-all duration-700"></div>
+                                <div className="relative w-full h-full rounded-full overflow-hidden p-1 border border-white/10 bg-white/[0.02] shadow-2xl shadow-black/80">
+                                    <img
+                                        src="assets/profile.jpg"
+                                        alt="Meet Bansal"
+                                        className="w-full h-full object-cover rounded-full grayscale contrast-105 brightness-95 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80";
+                                        }}
+                                    />
                                 </div>
                             </div>
 
-                            {/* Mobile Dropdown Menu */}
-                            {mobileMenuOpen && (
-                                <div className="md:hidden border-b border-white/10 bg-slate-950/95 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-3">
-                                    <a href="#research" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-200 hover:text-emerald-400 font-medium">Research</a>
-                                    <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-200 hover:text-emerald-400 font-medium">Tech App</a>
-                                    <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-200 hover:text-emerald-400 font-medium">Experience</a>
-                                    <a href="#competencies" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-200 hover:text-emerald-400 font-medium">Skills</a>
-                                    <a href="#credentials" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-200 hover:text-emerald-400 font-medium">Certifications</a>
-                                    <div className="pt-4">
-                                        <a
-                                            href="mailto:accameetbansal@gmail.com?subject=Inquiry%20-%20Meet%20Bansal"
-                                            onClick={() => setMobileMenuOpen(false)}
-                                            className="w-full py-2.5 rounded-xl text-sm font-semibold bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-center flex items-center justify-center gap-2"
-                                        >
-                                            <Mail className="w-4 h-4" />
-                                            Let's Connect
-                                        </a>
-                                    </div>
-                                </div>
-                            )}
-                        </header>
-
-                        {/* Hero Section */}
-                        <section className="pt-36 pb-20 md:pt-48 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                            {/* Profile Headshot with subtle emerald glow */}
-                            <div className="relative mx-auto w-36 h-36 sm:w-44 sm:h-44 rounded-full p-1.5 bg-gradient-to-br from-emerald-400 via-teal-500 to-slate-800 shadow-2xl shadow-emerald-500/25 mb-8 group">
-                                <img
-                                    src="assets/profile.jpg"
-                                    alt="Meet Bansal"
-                                    className="w-full h-full object-cover rounded-full border-4 border-slate-950 group-hover:scale-[1.02] transition-transform duration-300"
-                                    onError={(e) => {
-                                        // Fallback if image path has issue
-                                        e.target.onerror = null;
-                                        e.target.src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80";
-                                    }}
-                                />
-                                <div className="absolute inset-0 rounded-full ring-2 ring-emerald-400/40 ring-offset-2 ring-offset-slate-950"></div>
+                            {/* Overline Data Tag */}
+                            <div className="mb-4">
+                                <span className="inline-block text-[11px] font-mono uppercase tracking-[0.25em] text-emerald-400 px-4 py-1.5 rounded-full bg-white/[0.02] border border-white/10">
+                                    Durham University · ACCA Affiliate · CFA L1 Candidate
+                                </span>
                             </div>
 
-                            {/* Headline */}
-                            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-3 leading-tight font-heading">
+                            {/* Massive Editorial Hero Name */}
+                            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-serif font-normal text-white tracking-tight mb-3 leading-none">
                                 Meet Bansal
                             </h1>
 
-                            {/* Tagline */}
-                            <p className="text-xl sm:text-2xl lg:text-3xl font-heading font-medium text-emerald-400 mb-4 max-w-3xl mx-auto">
+                            {/* Subtitle */}
+                            <p className="text-xl sm:text-2xl font-serif italic text-slate-300 mb-6 max-w-2xl mx-auto">
                                 Financial Analyst & ACCA Affiliate
                             </p>
 
-                            {/* Subheading */}
-                            <p className="text-base sm:text-lg text-slate-300 mb-14 max-w-3xl mx-auto font-light leading-relaxed">
+                            {/* Refined Narrative Description */}
+                            <p className="text-sm sm:text-base text-slate-400 mb-16 max-w-3xl mx-auto font-light leading-relaxed">
                                 MSc Finance Candidate at Durham University | CFA Level 1 Candidate (Feb 2026).<br className="hidden sm:inline" />
                                 Synthesizing IFRS statutory reporting, DCF valuation, and quantitative metrics into actionable strategic insights.
                             </p>
 
                             {/* Quick 4-Card Hero Grid */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-left">
                                 {/* Card 1 */}
-                                <div className="glass-panel p-5 rounded-2xl flex items-center gap-4 transition-all">
-                                    <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0">
-                                        <GraduationCap className="w-6 h-6" />
+                                <div className="glass-panel glass-panel-hover p-7 rounded-3xl flex items-center gap-4">
+                                    <div className="w-11 h-11 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                                        <GraduationCap className="w-5 h-5" />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Postgraduate</div>
-                                        <div className="text-sm font-bold text-white font-heading">MSc Finance</div>
-                                        <div className="text-xs text-slate-400">Durham University</div>
+                                        <div className="text-[10px] font-mono uppercase tracking-widest text-slate-400">Postgraduate</div>
+                                        <div className="text-sm font-semibold text-white tracking-tight">MSc Finance</div>
+                                        <div className="text-xs text-slate-400 font-light">Durham University</div>
                                     </div>
                                 </div>
 
-                                {/* Card 2 */}
+                                {/* Card 2 (Clickable PDF Modal) */}
                                 <div
                                     onClick={() => setActivePdfDoc({
                                         title: 'ACCA Strategic Professional Certificate',
                                         url: 'assets/acca-strategic-professional.pdf',
                                         desc: 'Completed all 13 professional examination modules with global affiliate status.'
                                     })}
-                                    className="glass-panel p-5 rounded-2xl flex items-center gap-4 transition-all cursor-pointer hover:border-emerald-500/60 group"
+                                    className="glass-panel glass-panel-hover p-7 rounded-3xl flex items-center gap-4 cursor-pointer group"
                                 >
-                                    <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0 group-hover:scale-105 transition-transform">
-                                        <ShieldCheck className="w-6 h-6" />
+                                    <div className="w-11 h-11 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 flex-shrink-0 group-hover:scale-105 transition-transform duration-500">
+                                        <ShieldCheck className="w-5 h-5" />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
-                                            ACCA <Eye className="w-3 h-3 text-emerald-300" />
+                                        <div className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 flex items-center gap-1">
+                                            ACCA <Eye className="w-3 h-3 text-emerald-400" />
                                         </div>
-                                        <div className="text-sm font-bold text-white font-heading group-hover:text-emerald-300 transition-colors">ACCA Affiliate</div>
-                                        <div className="text-xs text-slate-400">13/13 Papers Cleared</div>
+                                        <div className="text-sm font-semibold text-white tracking-tight group-hover:text-emerald-300 transition-colors">ACCA Affiliate</div>
+                                        <div className="text-xs text-slate-400 font-light">13/13 Papers Cleared</div>
                                     </div>
                                 </div>
 
                                 {/* Card 3 */}
-                                <div className="glass-panel p-5 rounded-2xl flex items-center gap-4 transition-all">
-                                    <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0">
-                                        <TrendingUp className="w-6 h-6" />
+                                <div className="glass-panel glass-panel-hover p-7 rounded-3xl flex items-center gap-4">
+                                    <div className="w-11 h-11 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                                        <TrendingUp className="w-5 h-5" />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">CFA Institute</div>
-                                        <div className="text-sm font-bold text-white font-heading">CFA Level 1</div>
-                                        <div className="text-xs text-slate-400">Feb 2026 Candidate</div>
+                                        <div className="text-[10px] font-mono uppercase tracking-widest text-slate-400">CFA Institute</div>
+                                        <div className="text-sm font-semibold text-white tracking-tight">CFA Level 1</div>
+                                        <div className="text-xs text-slate-400 font-light">Feb 2026 Candidate</div>
                                     </div>
                                 </div>
 
-                                {/* Card 4 */}
+                                {/* Card 4 (Clickable PDF Modal) */}
                                 <div
                                     onClick={() => setActivePdfDoc({
                                         title: 'Oxford Brookes BSc Degree Certificate',
                                         url: 'assets/bsc-degree-certificate.pdf',
                                         desc: 'Degree Conferred via Coca-Cola vs. PepsiCo Research & Analysis Project.'
                                     })}
-                                    className="glass-panel p-5 rounded-2xl flex items-center gap-4 transition-all cursor-pointer hover:border-emerald-500/60 group"
+                                    className="glass-panel glass-panel-hover p-7 rounded-3xl flex items-center gap-4 cursor-pointer group"
                                 >
-                                    <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0 group-hover:scale-105 transition-transform">
-                                        <Award className="w-6 h-6" />
+                                    <div className="w-11 h-11 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 flex-shrink-0 group-hover:scale-105 transition-transform duration-500">
+                                        <Award className="w-5 h-5" />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
-                                            Degree <Eye className="w-3 h-3 text-emerald-300" />
+                                        <div className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 flex items-center gap-1">
+                                            Degree <Eye className="w-3 h-3 text-emerald-400" />
                                         </div>
-                                        <div className="text-sm font-bold text-white font-heading group-hover:text-emerald-300 transition-colors">BSc Applied Accounting</div>
-                                        <div className="text-xs text-slate-400">Oxford Brookes</div>
+                                        <div className="text-sm font-semibold text-white tracking-tight group-hover:text-emerald-300 transition-colors">BSc Applied Accounting</div>
+                                        <div className="text-xs text-slate-400 font-light">Oxford Brookes</div>
                                     </div>
                                 </div>
                             </div>
@@ -534,95 +561,107 @@
                     </div>
 
                     {/* ========================================================
-                        SECTION 2: CORE COMPETENCIES MATRIX
-                        Full-Width Section cleanly dividing Financial Accounting from Technical Systems
+                        SECTION 2: CORE COMPETENCIES MATRIX (Pill-Shaped Tags)
                         ======================================================== */}
-                    <section id="competencies" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/60 border-t border-b border-white/5 relative">
+                    <section id="competencies" className="py-28 md:py-36 px-4 sm:px-6 lg:px-8 border-t border-b border-white/[0.05] relative">
                         <div className="max-w-7xl mx-auto">
-                            <div className="text-center mb-14">
-                                <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                            <div className="text-center mb-20">
+                                <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-emerald-400 px-4 py-1.5 rounded-full bg-white/[0.02] border border-white/10 inline-block mb-3">
                                     Capability Matrix
                                 </span>
-                                <h2 className="text-3xl sm:text-4xl font-bold font-heading text-white mt-4 mb-3">
-                                    Core Competencies Matrix
+                                <h2 className="text-3xl sm:text-5xl font-serif font-normal text-white tracking-tight">
+                                    Core Competencies
                                 </h2>
-                                <p className="text-slate-400 text-sm max-w-2xl mx-auto">
-                                    Structured matrix cleanly dividing financial accounting governance from technical software and analytical platforms.
+                                <p className="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mt-4 font-light">
+                                    A structured division between statutory financial governance and quantitative technical software engineering.
                                 </p>
                             </div>
 
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                                 {/* Group 1: Financial Accounting Skills */}
-                                <div className="glass-panel rounded-2xl p-6 sm:p-8">
-                                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-                                        <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-                                            <BarChart3 className="w-5 h-5" />
+                                <div className="glass-panel rounded-3xl p-8 sm:p-10 flex flex-col justify-between">
+                                    <div>
+                                        <div className="flex items-center gap-3.5 mb-8 pb-6 border-b border-white/[0.06]">
+                                            <div className="w-10 h-10 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400">
+                                                <BarChart3 className="w-5 h-5" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-xl font-serif text-white">Financial Accounting & Valuation</h3>
+                                                <p className="text-xs text-slate-400 font-mono tracking-wide">Statutory compliance, valuation modeling & audit controls</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h3 className="text-xl font-bold font-heading text-white">Financial Accounting Skills</h3>
-                                            <p className="text-xs text-slate-400">Statutory standards, valuation modeling & compliance audits</p>
+
+                                        {/* Sleek Pill-Shaped Tags */}
+                                        <div className="flex flex-wrap gap-2.5 mb-8">
+                                            {[
+                                                'IFRS Statutory Reporting',
+                                                'Integrated 3-Statement Modelling',
+                                                'DCF Valuation & WACC Sensitivity',
+                                                'Bank & Multi-Currency AP/AR Reconciliation',
+                                                'Indian Income Tax & Corporate GST',
+                                                'DuPont Profitability Decomposition',
+                                                'Capital Budgeting & Liquidity Risk',
+                                                'Financial Due Diligence'
+                                            ].map((skill, idx) => (
+                                                <span
+                                                    key={idx}
+                                                    className="px-4 py-2 rounded-full border border-white/10 bg-white/[0.02] text-xs sm:text-sm text-slate-300 hover:text-white hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all duration-300 cursor-default flex items-center gap-2"
+                                                >
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                                                    {skill}
+                                                </span>
+                                            ))}
                                         </div>
                                     </div>
 
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                                        {[
-                                            { name: 'IFRS Reporting', desc: 'Statutory compliance & consolidated statements' },
-                                            { name: 'Financial Modelling', desc: 'Integrated 3-statement forecasts & scenario models' },
-                                            { name: 'DCF Valuation', desc: 'WACC calculations & terminal multiple sensitivity' },
-                                            { name: 'Bank & AP/AR Reconciliation', desc: 'Multi-currency ledger matching & dispute resolution' },
-                                            { name: 'Indian Income Tax & GST', desc: 'Corporate filings, TDS computations & ITC audits' },
-                                            { name: 'Risk Management', desc: 'DuPont profitability decomposition & liquidity control' },
-                                        ].map((skill, idx) => (
-                                            <div key={idx} className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-emerald-500/40 transition-all flex items-start gap-3 group">
-                                                <CheckCircle2 className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                                                <div>
-                                                    <div className="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">{skill.name}</div>
-                                                    <div className="text-xs text-slate-400">{skill.desc}</div>
-                                                </div>
-                                            </div>
-                                        ))}
+                                    <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] text-xs text-slate-400 leading-relaxed font-light">
+                                        <strong className="text-slate-200 font-medium">Domain Rigor: </strong>
+                                        Full compliance audits, multi-jurisdiction consolidation, and institutional financial modeling backed by 13/13 ACCA cleared papers.
                                     </div>
                                 </div>
 
                                 {/* Group 2: Technical Systems & Software */}
-                                <div className="glass-panel rounded-2xl p-6 sm:p-8">
-                                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-                                        <div className="w-10 h-10 rounded-xl bg-sky-500/20 border border-sky-500/30 flex items-center justify-center text-sky-400">
-                                            <Layers className="w-5 h-5" />
-                                        </div>
-                                        <div>
-                                            <h3 className="text-xl font-bold font-heading text-white">Technical Systems</h3>
-                                            <p className="text-xs text-slate-400">Enterprise accounting ERPs & modern web software architecture</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                                        {[
-                                            { name: 'Advanced MS Excel', badge: 'Advanced', desc: 'VBA macros, XLOOKUP, dynamic arrays & Solver' },
-                                            { name: 'Xero (Certified)', badge: 'Certified', desc: 'Cloud bookkeeping, automated feeds & ledger audits' },
-                                            { name: 'QuickBooks', badge: 'Proficient', desc: 'Multi-entity billing & automated balance sheet controls' },
-                                            { name: 'React / Next.js', badge: 'Frontend', desc: 'Component architecture, reactive states & hooks' },
-                                            { name: 'Vercel', badge: 'Cloud Deploy', desc: 'Continuous integration, serverless hosting & CI/CD' },
-                                        ].map((tech, idx) => (
-                                            <div key={idx} className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-sky-500/40 transition-all flex items-start gap-3 group">
-                                                <div className="w-2 h-2 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></div>
-                                                <div className="flex-grow">
-                                                    <div className="flex items-center justify-between gap-2">
-                                                        <div className="text-sm font-semibold text-white group-hover:text-sky-300 transition-colors">{tech.name}</div>
-                                                        <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">{tech.badge}</span>
-                                                    </div>
-                                                    <div className="text-xs text-slate-400 mt-0.5">{tech.desc}</div>
-                                                </div>
+                                <div className="glass-panel rounded-3xl p-8 sm:p-10 flex flex-col justify-between">
+                                    <div>
+                                        <div className="flex items-center gap-3.5 mb-8 pb-6 border-b border-white/[0.06]">
+                                            <div className="w-10 h-10 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-sky-400">
+                                                <Layers className="w-5 h-5" />
                                             </div>
-                                        ))}
+                                            <div>
+                                                <h3 className="text-xl font-serif text-white">Technical Systems & Software</h3>
+                                                <p className="text-xs text-slate-400 font-mono tracking-wide">Enterprise ERPs & reactive web engineering</p>
+                                            </div>
+                                        </div>
+
+                                        {/* Sleek Pill-Shaped Tags */}
+                                        <div className="flex flex-wrap gap-2.5 mb-8">
+                                            {[
+                                                'Advanced MS Excel (VBA & Solver)',
+                                                'Xero (Certified Advisor)',
+                                                'QuickBooks Enterprise',
+                                                'React 18 & Next.js',
+                                                'Vercel Serverless CI/CD',
+                                                'Tailwind CSS Design Systems',
+                                                'Financial Ratio Algorithms',
+                                                'Chart.js Data Visualization'
+                                            ].map((tech, idx) => (
+                                                <span
+                                                    key={idx}
+                                                    className="px-4 py-2 rounded-full border border-white/10 bg-white/[0.02] text-xs sm:text-sm text-slate-300 hover:text-white hover:border-sky-500/40 hover:bg-sky-500/5 transition-all duration-300 cursor-default flex items-center gap-2"
+                                                >
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
                                     </div>
 
                                     {/* Tech & Finance Synthesis Banner */}
-                                    <div className="mt-6 p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20 flex items-center gap-3">
-                                        <Sparkles className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                                        <p className="text-xs text-slate-300 leading-relaxed">
-                                            Bridges <strong className="text-white">ACCA-accredited statutory rigor</strong> with <strong className="text-white">full-stack web development capability</strong> to automate financial reporting and deliver production analytical applications.
-                                        </p>
+                                    <div className="p-4 rounded-2xl bg-emerald-500/[0.04] border border-emerald-500/20 text-xs text-slate-300 leading-relaxed font-light flex items-center gap-3">
+                                        <Sparkles className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                                        <span>
+                                            Bridges <strong className="text-white font-medium">ACCA statutory rigor</strong> with <strong className="text-white font-medium">modern web engineering</strong> to automate financial reporting and deliver production analytical web applications.
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -631,19 +670,17 @@
 
                     {/* ========================================================
                         SECTION 3: CREDENTIALS & CERTIFICATIONS GRID (Clickable PDF Modal Cards)
-                        ACCA Strategic Professional, ACCA Advanced Diploma, Oxford Brookes Degree,
-                        J.P. Morgan IB Simulation, Xero Advisor Certified, CFI Accounting Fundamentals
                         ======================================================== */}
-                    <section id="credentials" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                        <div className="text-center mb-16">
-                            <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-                                Verified Proof
+                    <section id="credentials" className="py-28 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+                        <div className="text-center mb-20">
+                            <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-emerald-400 px-4 py-1.5 rounded-full bg-white/[0.02] border border-white/10 inline-block mb-3">
+                                Verified Accreditations
                             </span>
-                            <h2 className="text-3xl sm:text-5xl font-bold font-heading text-white mt-4 mb-3">
+                            <h2 className="text-3xl sm:text-5xl font-serif font-normal text-white tracking-tight">
                                 Credentials & Certifications
                             </h2>
-                            <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
-                                Click any credential to preview the official certificate document inside the interactive PDF viewer.
+                            <p className="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mt-4 font-light">
+                                Preview the official conferred certificates directly within the interactive modal viewer.
                             </p>
                         </div>
 
@@ -657,7 +694,6 @@
                                     desc: 'Master-level qualification in strategic business reporting, advanced financial management, and corporate governance.',
                                     file: 'assets/acca-strategic-professional.pdf',
                                     icon: ShieldCheck,
-                                    theme: 'emerald'
                                 },
                                 {
                                     title: 'ACCA Advanced Diploma',
@@ -666,7 +702,6 @@
                                     desc: 'Comprehensive accreditation covering financial management, taxation, audit & assurance, and financial reporting under IFRS.',
                                     file: 'assets/acca-advanced-diploma.pdf',
                                     icon: Award,
-                                    theme: 'emerald'
                                 },
                                 {
                                     title: 'Oxford Brookes Degree Certificate',
@@ -675,16 +710,14 @@
                                     desc: 'Conferred Honours Degree in Applied Accounting evaluated through a 7,500-word corporate research and analysis submission.',
                                     file: 'assets/bsc-degree-certificate.pdf',
                                     icon: GraduationCap,
-                                    theme: 'sky'
                                 },
                                 {
                                     title: 'J.P. Morgan IB Simulation',
-                                    badge: 'Wall Street Simulation',
+                                    badge: 'Investment Banking',
                                     issuer: 'J.P. Morgan via Forage',
                                     desc: 'Practical execution of DCF financial valuation modeling, comparable company analysis, and M&A pitch deck structuring.',
                                     file: 'assets/jpmorgan-ib-simulation.pdf',
                                     icon: TrendingUp,
-                                    theme: 'emerald'
                                 },
                                 {
                                     title: 'Xero Advisor Certified',
@@ -693,16 +726,14 @@
                                     desc: 'Demonstrated mastery in cloud ledger setup, automated bank feeds, payroll processing, and multi-currency reconciliations.',
                                     file: 'assets/xero-certified-advisor.pdf',
                                     icon: CheckCircle2,
-                                    theme: 'sky'
                                 },
                                 {
                                     title: 'CFI Accounting Fundamentals',
-                                    badge: 'Corporate Finance Institute',
+                                    badge: 'Corporate Finance',
                                     issuer: 'Corporate Finance Institute (CFI)',
                                     desc: 'Core fundamentals of balance sheet mechanics, income statement depreciation schedules, and working capital cash flows.',
                                     file: 'assets/cfi-accounting-fundamentals.pdf',
                                     icon: FileText,
-                                    theme: 'amber'
                                 },
                             ].map((cert, idx) => {
                                 const CardIcon = cert.icon;
@@ -714,33 +745,33 @@
                                             url: cert.file,
                                             desc: cert.desc
                                         })}
-                                        className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between cursor-pointer hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-500/10 transition-all group"
+                                        className="glass-panel glass-panel-hover p-8 rounded-3xl flex flex-col justify-between cursor-pointer group"
                                     >
                                         <div>
-                                            <div className="flex justify-between items-start mb-4">
-                                                <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
-                                                    <CardIcon className="w-6 h-6" />
+                                            <div className="flex justify-between items-start mb-6">
+                                                <div className="w-11 h-11 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform duration-500">
+                                                    <CardIcon className="w-5 h-5" />
                                                 </div>
-                                                <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-white/5 text-emerald-400 border border-white/10 font-medium">
+                                                <span className="text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-full bg-white/[0.03] text-slate-400 border border-white/10">
                                                     {cert.badge}
                                                 </span>
                                             </div>
-                                            <h3 className="text-lg font-bold font-heading text-white group-hover:text-emerald-300 transition-colors mb-1">
+                                            <h3 className="text-lg font-serif text-white group-hover:text-emerald-300 transition-colors mb-1.5">
                                                 {cert.title}
                                             </h3>
-                                            <div className="text-xs text-emerald-400 font-medium mb-3">
+                                            <div className="text-[11px] font-mono text-emerald-400 tracking-wide mb-4">
                                                 {cert.issuer}
                                             </div>
-                                            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+                                            <p className="text-xs sm:text-sm text-slate-400 font-light leading-relaxed mb-8">
                                                 {cert.desc}
                                             </p>
                                         </div>
 
-                                        <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-emerald-400 font-semibold group-hover:text-white transition-colors">
-                                            <span className="flex items-center gap-1.5">
-                                                <Eye className="w-4 h-4" /> View Official Certificate
+                                        <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs text-slate-400 group-hover:text-emerald-400 transition-colors">
+                                            <span className="flex items-center gap-1.5 font-mono text-[11px]">
+                                                <Eye className="w-3.5 h-3.5 text-emerald-400" /> View Document
                                             </span>
-                                            <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                                            <ExternalLink className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 transition-opacity" />
                                         </div>
                                     </div>
                                 );
@@ -751,69 +782,67 @@
                     {/* ========================================================
                         SECTION 4: OBU EQUITY RESEARCH SECTION
                         Comparative Financial & Strategic Analysis (Coca-Cola vs. PepsiCo, 2022-2024)
-                        Chart.js bar chart, 3 clickable cards (Research Report, Presentation Deck, SLS),
-                        and 2025-2026 Market Addendum card
                         ======================================================== */}
-                    <section id="research" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                        <div className="text-center mb-16">
-                            <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                    <section id="research" className="py-28 md:py-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full border-t border-white/[0.05]">
+                        <div className="text-center mb-20">
+                            <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-emerald-400 px-4 py-1.5 rounded-full bg-white/[0.02] border border-white/10 inline-block mb-3">
                                 Oxford Brookes RAP
                             </span>
-                            <h2 className="text-3xl sm:text-5xl font-bold font-heading text-white mt-4 mb-3">
+                            <h2 className="text-3xl sm:text-5xl font-serif font-normal text-white tracking-tight">
                                 Comparative Financial & Strategic Analysis
                             </h2>
-                            <p className="text-slate-300 text-sm sm:text-base max-w-3xl mx-auto">
-                                A rigorous 2022–2024 equity evaluation of The Coca-Cola Company versus PepsiCo, Inc. (OBU RAP Project)
+                            <p className="text-slate-400 text-sm sm:text-base max-w-3xl mx-auto mt-4 font-light">
+                                A rigorous 2022–2024 equity evaluation of The Coca-Cola Company versus PepsiCo, Inc.
                             </p>
                         </div>
 
                         {/* Interactive Comparative Chart Section */}
-                        <div className="glass-panel rounded-3xl p-6 sm:p-8 lg:p-10 mb-12 border border-white/10 shadow-2xl">
-                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-6 border-b border-white/10">
+                        <div className="glass-panel rounded-3xl p-8 sm:p-12 mb-12 shadow-2xl">
+                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 pb-6 border-b border-white/[0.06]">
                                 <div>
-                                    <div className="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-2">
+                                    <div className="text-[11px] font-mono uppercase tracking-widest text-emerald-400 flex items-center gap-2">
                                         <BarChart3 className="w-4 h-4" /> SEC Form 10-K Audited Metrics (2022–2024)
                                     </div>
-                                    <h3 className="text-2xl font-bold font-heading text-white mt-1">
+                                    <h3 className="text-2xl font-serif text-white mt-1">
                                         DuPont Comparative Ratio Breakdown
                                     </h3>
                                 </div>
 
-                                {/* Metric Tabs */}
-                                <div className="flex bg-slate-900/90 p-1.5 rounded-xl border border-white/10">
+                                {/* Metric Tabs (Rounded Pill Switcher) */}
+                                <div className="flex bg-[#0a0a0c] p-1 rounded-full border border-white/10">
                                     <button
                                         onClick={() => setActiveMetric('roce')}
-                                        className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
+                                        className={`px-4 py-1.5 rounded-full text-xs font-mono transition-all duration-300 ${
                                             activeMetric === 'roce'
-                                                ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/25'
+                                                ? 'bg-emerald-600 text-white shadow-md'
                                                 : 'text-slate-400 hover:text-white'
                                         }`}
                                     >
-                                        Return on Capital Employed (ROCE)
+                                        ROCE Breakdown
                                     </button>
                                     <button
                                         onClick={() => setActiveMetric('grossMargin')}
-                                        className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
+                                        className={`px-4 py-1.5 rounded-full text-xs font-mono transition-all duration-300 ${
                                             activeMetric === 'grossMargin'
-                                                ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/25'
+                                                ? 'bg-emerald-600 text-white shadow-md'
                                                 : 'text-slate-400 hover:text-white'
                                         }`}
                                     >
-                                        Gross Profit Margin
+                                        Gross Margin
                                     </button>
                                 </div>
                             </div>
 
                             {/* Chart Canvas */}
-                            <div className="h-72 sm:h-80 w-full mb-6">
+                            <div className="h-72 sm:h-80 w-full mb-8">
                                 <canvas ref={chartCanvasRef}></canvas>
                             </div>
 
                             {/* Commentary Box */}
-                            <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 flex items-start gap-3.5">
+                            <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05] flex items-start gap-4">
                                 <TrendingUp className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                                <div className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                                    <strong className="text-white">Analyst DuPont Interpretation: </strong>
+                                <div className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
+                                    <strong className="text-white font-medium">Analyst Interpretation: </strong>
                                     {chartDatasets[activeMetric].summary}
                                 </div>
                             </div>
@@ -828,26 +857,26 @@
                                     url: 'assets/obu-research-report.pdf',
                                     desc: 'Full 7,500-word undergraduate dissertation examining 3-year SEC Form 10-K filings, DuPont margin trade-offs, and supply chain elasticity.'
                                 })}
-                                className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-500/10 transition-all cursor-pointer group"
+                                className="glass-panel glass-panel-hover p-8 rounded-3xl flex flex-col justify-between cursor-pointer group"
                             >
                                 <div>
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
-                                            <FileText className="w-6 h-6" />
+                                    <div className="flex justify-between items-start mb-6">
+                                        <div className="w-11 h-11 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform duration-500">
+                                            <FileText className="w-5 h-5" />
                                         </div>
-                                        <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-white/5 text-emerald-400 border border-white/10 font-medium">
+                                        <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-white/[0.03] text-emerald-400 border border-white/10">
                                             7,500 Words
                                         </span>
                                     </div>
-                                    <h4 className="text-lg font-bold font-heading text-white group-hover:text-emerald-300 transition-colors mb-2">
+                                    <h4 className="text-lg font-serif text-white group-hover:text-emerald-300 transition-colors mb-2">
                                         Research & Analysis Report
                                     </h4>
-                                    <p className="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
+                                    <p className="text-xs sm:text-sm text-slate-400 font-light mb-8 leading-relaxed">
                                         Comprehensive equity valuation model evaluating 3-year financial statements, DuPont profitability drivers, working capital cycles, and ESG packaging compliance.
                                     </p>
                                 </div>
-                                <div className="w-full py-2.5 px-4 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500 text-emerald-300 group-hover:text-slate-950 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 border border-emerald-500/30">
-                                    <Eye className="w-4 h-4" /> Open Report Viewer
+                                <div className="w-full py-2.5 px-4 rounded-full bg-white/[0.03] group-hover:bg-emerald-600/90 text-slate-300 group-hover:text-white font-mono text-xs transition-all duration-500 flex items-center justify-center gap-2 border border-white/10 group-hover:border-emerald-500/40">
+                                    <Eye className="w-3.5 h-3.5 text-emerald-400 group-hover:text-white" /> Open Report Viewer
                                 </div>
                             </div>
 
@@ -858,26 +887,26 @@
                                     url: 'assets/obu-presentation-deck.pdf',
                                     desc: '15-slide institutional pitch deck breaking down beverage vs snack mix, price elasticity, ROCE drivers, and investment recommendations.'
                                 })}
-                                className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-sky-500/60 hover:shadow-xl hover:shadow-sky-500/10 transition-all cursor-pointer group"
+                                className="glass-panel glass-panel-hover p-8 rounded-3xl flex flex-col justify-between cursor-pointer group"
                             >
                                 <div>
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div className="w-12 h-12 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform">
-                                            <Presentation className="w-6 h-6" />
+                                    <div className="flex justify-between items-start mb-6">
+                                        <div className="w-11 h-11 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-sky-400 group-hover:scale-105 transition-transform duration-500">
+                                            <Presentation className="w-5 h-5" />
                                         </div>
-                                        <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-white/5 text-sky-400 border border-white/10 font-medium">
+                                        <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-white/[0.03] text-sky-400 border border-white/10">
                                             15 Slides
                                         </span>
                                     </div>
-                                    <h4 className="text-lg font-bold font-heading text-white group-hover:text-sky-300 transition-colors mb-2">
+                                    <h4 className="text-lg font-serif text-white group-hover:text-sky-300 transition-colors mb-2">
                                         Executive Presentation Deck
                                     </h4>
-                                    <p className="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
+                                    <p className="text-xs sm:text-sm text-slate-400 font-light mb-8 leading-relaxed">
                                         High-impact executive pitch deck summarizing competitive moats, beverage vs snack revenue mix, pricing elasticity, and final investor recommendation.
                                     </p>
                                 </div>
-                                <div className="w-full py-2.5 px-4 rounded-xl bg-sky-500/15 group-hover:bg-sky-500 text-sky-300 group-hover:text-slate-950 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 border border-sky-500/30">
-                                    <Eye className="w-4 h-4" /> Open Slide Deck Viewer
+                                <div className="w-full py-2.5 px-4 rounded-full bg-white/[0.03] group-hover:bg-sky-600/90 text-slate-300 group-hover:text-white font-mono text-xs transition-all duration-500 flex items-center justify-center gap-2 border border-white/10 group-hover:border-sky-500/40">
+                                    <Eye className="w-3.5 h-3.5 text-sky-400 group-hover:text-white" /> Open Slide Deck Viewer
                                 </div>
                             </div>
 
@@ -888,26 +917,26 @@
                                     url: 'assets/obu-sls-reflection.pdf',
                                     desc: 'Self-reflective academic statement analyzing research judgment challenges, resolving non-GAAP discrepancies, and ethical leadership.'
                                 })}
-                                className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-amber-500/60 hover:shadow-xl hover:shadow-amber-500/10 transition-all cursor-pointer group"
+                                className="glass-panel glass-panel-hover p-8 rounded-3xl flex flex-col justify-between cursor-pointer group"
                             >
                                 <div>
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div className="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
-                                            <GraduationCap className="w-6 h-6" />
+                                    <div className="flex justify-between items-start mb-6">
+                                        <div className="w-11 h-11 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform duration-500">
+                                            <GraduationCap className="w-5 h-5" />
                                         </div>
-                                        <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-white/5 text-amber-400 border border-white/10 font-medium">
+                                        <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-white/[0.03] text-amber-400 border border-white/10">
                                             Oxford Brookes
                                         </span>
                                     </div>
-                                    <h4 className="text-lg font-bold font-heading text-white group-hover:text-amber-300 transition-colors mb-2">
+                                    <h4 className="text-lg font-serif text-white group-hover:text-amber-300 transition-colors mb-2">
                                         Skills & Learning Statement
                                     </h4>
-                                    <p className="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
+                                    <p className="text-xs sm:text-sm text-slate-400 font-light mb-8 leading-relaxed">
                                         Methodological reflection on research judgment hurdles, resolving non-GAAP discrepancies between corporate filings, and ethical governance standards.
                                     </p>
                                 </div>
-                                <div className="w-full py-2.5 px-4 rounded-xl bg-amber-500/15 group-hover:bg-amber-500 text-amber-300 group-hover:text-slate-950 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 border border-amber-500/30">
-                                    <Eye className="w-4 h-4" /> Open SLS Reflection
+                                <div className="w-full py-2.5 px-4 rounded-full bg-white/[0.03] group-hover:bg-amber-600/90 text-slate-300 group-hover:text-white font-mono text-xs transition-all duration-500 flex items-center justify-center gap-2 border border-white/10 group-hover:border-amber-500/40">
+                                    <Eye className="w-3.5 h-3.5 text-amber-400 group-hover:text-white" /> Open SLS Reflection
                                 </div>
                             </div>
                         </div>
@@ -915,56 +944,48 @@
 
                     {/* ========================================================
                         SECTION 5: TECHNICAL WEB PROJECTS
-                        Exactly ONE project: 'Manage Me'
                         ======================================================== */}
-                    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/60 border-t border-b border-white/5 relative">
+                    <section id="projects" className="py-28 md:py-36 px-4 sm:px-6 lg:px-8 border-t border-b border-white/[0.05] relative">
                         <div className="max-w-7xl mx-auto">
-                            <div className="text-center mb-12">
-                                <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-                                    Software Engineering & Analytics
+                            <div className="text-center mb-20">
+                                <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-emerald-400 px-4 py-1.5 rounded-full bg-white/[0.02] border border-white/10 inline-block mb-3">
+                                    Engineering & Analytics
                                 </span>
-                                <h2 className="text-3xl sm:text-4xl font-bold font-heading text-white mt-4 mb-3">
+                                <h2 className="text-3xl sm:text-5xl font-serif font-normal text-white tracking-tight">
                                     Technical Web Projects
                                 </h2>
-                                <p className="text-slate-400 text-sm max-w-xl mx-auto">
+                                <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto mt-4 font-light">
                                     Demonstrating full-stack engineering proficiency by building quantitative web software deployed in production.
                                 </p>
                             </div>
 
                             {/* Single Project Card: Manage Me */}
-                            <div className="max-w-4xl mx-auto glass-panel rounded-3xl p-6 sm:p-10 border border-white/10 hover:border-emerald-500/40 transition-all shadow-2xl flex flex-col md:flex-row items-center gap-8">
-                                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0 shadow-lg">
-                                    <Layers className="w-12 h-12" />
+                            <div className="max-w-4xl mx-auto glass-panel glass-panel-hover rounded-3xl p-8 sm:p-12 shadow-2xl flex flex-col md:flex-row items-center gap-8">
+                                <div className="w-20 h-20 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                                    <Layers className="w-10 h-10" />
                                 </div>
 
                                 <div className="flex-grow text-left">
                                     <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-                                        <h3 className="text-2xl sm:text-3xl font-bold font-heading text-white">
+                                        <h3 className="text-2xl sm:text-3xl font-serif text-white">
                                             Manage Me
                                         </h3>
-                                        <span className="text-xs font-semibold bg-emerald-500/15 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/30 flex items-center gap-1.5">
-                                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Live in Production
+                                        <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-1.5">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live in Production
                                         </span>
                                     </div>
 
-                                    <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                                    <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-6 font-light">
                                         A modern productivity web application engineered to optimize academic schedule allocations and deadline forecasting for university students.
                                     </p>
 
-                                    {/* Tech Stack Tags */}
-                                    <div className="flex flex-wrap items-center gap-2 mb-6">
-                                        <span className="px-3 py-1 rounded-lg bg-white/5 text-slate-200 text-xs font-mono font-medium border border-white/10">
-                                            React
-                                        </span>
-                                        <span className="px-3 py-1 rounded-lg bg-white/5 text-slate-200 text-xs font-mono font-medium border border-white/10">
-                                            Next.js
-                                        </span>
-                                        <span className="px-3 py-1 rounded-lg bg-white/5 text-slate-200 text-xs font-mono font-medium border border-white/10">
-                                            Tailwind CSS
-                                        </span>
-                                        <span className="px-3 py-1 rounded-lg bg-white/5 text-slate-200 text-xs font-mono font-medium border border-white/10">
-                                            Vercel
-                                        </span>
+                                    {/* Tech Stack Pills */}
+                                    <div className="flex flex-wrap items-center gap-2 mb-8">
+                                        {['React', 'Next.js', 'Tailwind CSS', 'Vercel'].map((tag, idx) => (
+                                            <span key={idx} className="px-3.5 py-1 rounded-full bg-white/[0.02] text-slate-300 text-xs font-mono border border-white/10">
+                                                {tag}
+                                            </span>
+                                        ))}
                                     </div>
 
                                     {/* Action Button */}
@@ -972,9 +993,9 @@
                                         href="https://manageme-three.vercel.app"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/25"
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600/90 hover:bg-emerald-500 text-white font-medium text-xs font-mono uppercase tracking-wider transition-all duration-500 shadow-xl shadow-emerald-950/40 border border-emerald-500/30"
                                     >
-                                        Launch Live Application <ExternalLink className="w-4 h-4" />
+                                        Launch Live Application <ExternalLink className="w-3.5 h-3.5" />
                                     </a>
                                 </div>
                             </div>
@@ -983,60 +1004,56 @@
 
                     {/* ========================================================
                         SECTION 6: PROFESSIONAL EXPERIENCE (Vertical Timeline)
-                        Job 1: Accounts & IFRS Trainee | United Corporate Accounting
-                        Job 2: Tax and Accounts Associate | CA Aditya Karir & Associates
                         ======================================================== */}
-                    <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
-                        <div className="text-center mb-16">
-                            <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                    <section id="experience" className="py-28 md:py-36 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
+                        <div className="text-center mb-20">
+                            <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-emerald-400 px-4 py-1.5 rounded-full bg-white/[0.02] border border-white/10 inline-block mb-3">
                                 Professional Track Record
                             </span>
-                            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-white mt-4 mb-3">
+                            <h2 className="text-3xl sm:text-5xl font-serif font-normal text-white tracking-tight">
                                 Professional Experience
                             </h2>
-                            <p className="text-slate-400 text-sm max-w-xl mx-auto">
-                                Proven corporate background spanning IFRS statutory compliance, multi-currency ledger audits, and taxation filings.
+                            <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto mt-4 font-light">
+                                Proven background spanning IFRS statutory compliance, multi-currency ledger audits, and taxation filings.
                             </p>
                         </div>
 
                         {/* Vertical Timeline */}
-                        <div className="relative border-l-2 border-emerald-500/30 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-12">
+                        <div className="relative border-l border-white/10 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-14">
                             
                             {/* Job 1 */}
                             <div className="relative group">
                                 {/* Timeline Dot */}
-                                <div className="absolute -left-[35px] sm:-left-[51px] top-1.5 w-6 h-6 rounded-full bg-slate-950 border-4 border-emerald-500 group-hover:scale-125 transition-transform flex items-center justify-center">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
-                                </div>
+                                <div className="absolute -left-[31px] sm:-left-[47px] top-6 w-3 h-3 rounded-full bg-emerald-400 ring-4 ring-[#0a0a0c]"></div>
 
-                                <div className="glass-panel p-6 sm:p-8 rounded-2xl transition-all border border-white/10 hover:border-emerald-500/40">
-                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                                <div className="glass-panel glass-panel-hover p-8 sm:p-10 rounded-3xl">
+                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                                         <div>
-                                            <h3 className="text-xl font-bold font-heading text-white">
+                                            <h3 className="text-xl font-serif text-white">
                                                 Accounts & IFRS Trainee
                                             </h3>
-                                            <div className="text-emerald-400 font-medium text-sm">
+                                            <div className="text-emerald-400 text-xs font-mono mt-0.5">
                                                 United Corporate Accounting and Taxation Services Pvt. Ltd.
                                             </div>
                                         </div>
-                                        <div className="flex items-center gap-1.5 text-xs text-slate-400 bg-white/5 px-3 py-1 rounded-full border border-white/5 w-fit">
-                                            <Calendar className="w-3.5 h-3.5 text-emerald-400" />
+                                        <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400 bg-white/[0.03] px-3.5 py-1 rounded-full border border-white/5 w-fit">
+                                            <Calendar className="w-3 h-3 text-emerald-400" />
                                             Sep 2024 - Sep 2025
                                         </div>
                                     </div>
 
-                                    <ul className="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-300">
-                                        <li className="flex items-start gap-2.5">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></div>
-                                            <span><strong>IFRS Compliance:</strong> Audited and prepared balance sheets, income statements, and cash flow schedules under full IFRS statutory reporting standards.</span>
+                                    <ul className="mt-6 space-y-3 text-xs sm:text-sm text-slate-300 font-light">
+                                        <li className="flex items-start gap-3">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
+                                            <span><strong className="text-white font-medium">IFRS Compliance:</strong> Audited and prepared balance sheets, income statements, and cash flow schedules under full IFRS statutory reporting standards.</span>
                                         </li>
-                                        <li className="flex items-start gap-2.5">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></div>
-                                            <span><strong>AP/AR Reconciliation:</strong> Supervised end-to-end accounts payable and accounts receivable reconciliations across multi-currency vendor ledgers.</span>
+                                        <li className="flex items-start gap-3">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
+                                            <span><strong className="text-white font-medium">AP/AR Reconciliation:</strong> Supervised end-to-end accounts payable and accounts receivable reconciliations across multi-currency vendor ledgers.</span>
                                         </li>
-                                        <li className="flex items-start gap-2.5">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></div>
-                                            <span><strong>Turnaround Acceleration:</strong> Re-engineered monthly reconciliation workflows, driving a <strong className="text-emerald-300">15% reduction in reconciliation turnaround time</strong> and eliminating month-end closing bottlenecks.</span>
+                                        <li className="flex items-start gap-3">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></span>
+                                            <span><strong className="text-white font-medium">Turnaround Acceleration:</strong> Re-engineered monthly reconciliation workflows, driving a <strong className="text-emerald-300 font-medium">15% reduction in reconciliation turnaround time</strong> and eliminating month-end closing bottlenecks.</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -1045,38 +1062,36 @@
                             {/* Job 2 */}
                             <div className="relative group">
                                 {/* Timeline Dot */}
-                                <div className="absolute -left-[35px] sm:-left-[51px] top-1.5 w-6 h-6 rounded-full bg-slate-950 border-4 border-sky-500 group-hover:scale-125 transition-transform flex items-center justify-center">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-sky-400"></div>
-                                </div>
+                                <div className="absolute -left-[31px] sm:-left-[47px] top-6 w-3 h-3 rounded-full bg-sky-400 ring-4 ring-[#0a0a0c]"></div>
 
-                                <div className="glass-panel p-6 sm:p-8 rounded-2xl transition-all border border-white/10 hover:border-sky-500/40">
-                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                                <div className="glass-panel glass-panel-hover p-8 sm:p-10 rounded-3xl">
+                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                                         <div>
-                                            <h3 className="text-xl font-bold font-heading text-white">
+                                            <h3 className="text-xl font-serif text-white">
                                                 Tax and Accounts Associate
                                             </h3>
-                                            <div className="text-sky-400 font-medium text-sm">
+                                            <div className="text-sky-400 text-xs font-mono mt-0.5">
                                                 CA Aditya Karir & Associates
                                             </div>
                                         </div>
-                                        <div className="flex items-center gap-1.5 text-xs text-slate-400 bg-white/5 px-3 py-1 rounded-full border border-white/5 w-fit">
-                                            <Calendar className="w-3.5 h-3.5 text-sky-400" />
+                                        <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400 bg-white/[0.03] px-3.5 py-1 rounded-full border border-white/5 w-fit">
+                                            <Calendar className="w-3 h-3 text-sky-400" />
                                             Feb 2023 - Aug 2024
                                         </div>
                                     </div>
 
-                                    <ul className="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-300">
-                                        <li className="flex items-start gap-2.5">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-sky-400 mt-2 flex-shrink-0"></div>
-                                            <span><strong>Domestic & Overseas Accounting:</strong> Prepared trial balances, General Ledgers, and depreciation schedules for cross-border corporate entities.</span>
+                                    <ul className="mt-6 space-y-3 text-xs sm:text-sm text-slate-300 font-light">
+                                        <li className="flex items-start gap-3">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-sky-400 mt-2 flex-shrink-0"></span>
+                                            <span><strong className="text-white font-medium">Domestic & Overseas Accounting:</strong> Prepared trial balances, General Ledgers, and depreciation schedules for cross-border corporate entities.</span>
                                         </li>
-                                        <li className="flex items-start gap-2.5">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-sky-400 mt-2 flex-shrink-0"></div>
-                                            <span><strong>Indian Income Tax Filing:</strong> Calculated corporate advance tax liabilities, computed TDS deductibles, and prepared direct tax assessment files.</span>
+                                        <li className="flex items-start gap-3">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-sky-400 mt-2 flex-shrink-0"></span>
+                                            <span><strong className="text-white font-medium">Indian Income Tax Filing:</strong> Calculated corporate advance tax liabilities, computed TDS deductibles, and prepared direct tax assessment files.</span>
                                         </li>
-                                        <li className="flex items-start gap-2.5">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-sky-400 mt-2 flex-shrink-0"></div>
-                                            <span><strong>GST Compliance:</strong> Filed monthly GSTR-1, GSTR-3B submissions and conducted input tax credit (ITC) reconciliation with zero non-compliance penalties.</span>
+                                        <li className="flex items-start gap-3">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-sky-400 mt-2 flex-shrink-0"></span>
+                                            <span><strong className="text-white font-medium">GST Compliance:</strong> Filed monthly GSTR-1, GSTR-3B submissions and conducted input tax credit (ITC) reconciliation with zero non-compliance penalties.</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -1087,162 +1102,172 @@
 
                     {/* ========================================================
                         SECTION 7: FOOTER
-                        Email, Phone, Location, LinkedIn
                         ======================================================== */}
-                    <footer className="bg-slate-950 text-slate-400 py-16 border-t border-white/10">
+                    <footer className="bg-[#070709] text-slate-400 py-24 sm:py-32 border-t border-white/[0.06]">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+                            <div className="flex flex-col md:flex-row justify-between items-center gap-10 mb-16">
                                 {/* Brand & Bio */}
-                                <div>
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-slate-950 font-bold font-heading text-sm shadow-md">
+                                <div className="text-center md:text-left">
+                                    <div className="flex items-center justify-center md:justify-start gap-3.5 mb-3">
+                                        <div className="w-9 h-9 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-emerald-400 font-serif font-semibold text-sm">
                                             MB
                                         </div>
-                                        <span className="font-heading font-bold text-xl text-white">Meet Bansal</span>
+                                        <span className="font-serif text-xl text-white">Meet Bansal</span>
                                     </div>
-                                    <p className="text-sm text-slate-400 max-w-sm">
+                                    <p className="text-xs sm:text-sm text-slate-400 max-w-sm font-light">
                                         Financial Analyst & ACCA Affiliate synthesizing IFRS statutory reporting, DCF valuations, and quantitative financial models.
                                     </p>
                                 </div>
 
                                 {/* Contact Details */}
-                                <div className="flex flex-wrap justify-center items-center gap-6 text-sm">
+                                <div className="flex flex-wrap justify-center items-center gap-6 text-xs sm:text-sm">
                                     <div className="flex items-center gap-2">
                                         <a
                                             href="mailto:accameetbansal@gmail.com"
-                                            className="hover:text-emerald-400 transition-colors flex items-center gap-2 text-slate-300"
+                                            className="hover:text-emerald-400 transition-colors duration-300 flex items-center gap-2 text-slate-300 font-mono text-xs"
                                             title="Click to send an email"
                                         >
-                                            <Mail className="w-4 h-4 text-emerald-400" />
+                                            <Mail className="w-3.5 h-3.5 text-emerald-400" />
                                             <span>accameetbansal@gmail.com</span>
                                         </a>
                                         <button
                                             onClick={copyEmail}
-                                            className={`p-1.5 rounded-lg border transition-all flex items-center justify-center ${
+                                            className={`p-1.5 rounded-full border transition-all duration-300 flex items-center justify-center ${
                                                 isCopied
                                                     ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 scale-105'
-                                                    : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-emerald-500/40'
+                                                    : 'bg-white/[0.03] border-white/10 text-slate-400 hover:text-white hover:border-emerald-500/30'
                                             }`}
-                                            title={isCopied ? 'Copied to clipboard!' : 'Copy Email to Clipboard'}
+                                            title={isCopied ? 'Copied to clipboard' : 'Copy Email'}
                                             aria-label="Copy Email"
                                         >
                                             {isCopied ? (
-                                                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                                                <Check className="w-3 h-3 text-emerald-400" />
                                             ) : (
-                                                <Copy className="w-3.5 h-3.5" />
+                                                <Copy className="w-3 h-3" />
                                             )}
                                         </button>
                                     </div>
-                                    <span className="text-slate-700 hidden sm:inline">|</span>
+                                    <span className="text-slate-800 hidden sm:inline">/</span>
                                     <a
                                         href="tel:+447596085818"
-                                        className="hover:text-emerald-400 transition-colors flex items-center gap-2"
+                                        className="hover:text-emerald-400 transition-colors duration-300 flex items-center gap-2 text-slate-300 font-mono text-xs"
                                     >
-                                        <Phone className="w-4 h-4 text-emerald-400" />
+                                        <Phone className="w-3.5 h-3.5 text-emerald-400" />
                                         <span>+44 7596 085818</span>
                                     </a>
-                                    <span className="text-slate-700 hidden sm:inline">|</span>
-                                    <span className="flex items-center gap-2 text-slate-300">
-                                        <MapPin className="w-4 h-4 text-emerald-400" />
+                                    <span className="text-slate-800 hidden sm:inline">/</span>
+                                    <span className="flex items-center gap-2 text-slate-300 font-mono text-xs">
+                                        <MapPin className="w-3.5 h-3.5 text-emerald-400" />
                                         <span>Durham, United Kingdom</span>
                                     </span>
                                 </div>
 
-                                {/* LinkedIn & Actions */}
+                                {/* LinkedIn & Copy Icon Pill */}
                                 <div className="flex gap-3">
                                     <a
                                         href="https://linkedin.com/in/meetbansal"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-slate-950 hover:bg-emerald-400 hover:border-emerald-400 transition-all text-lg shadow-md"
+                                        className="w-11 h-11 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-emerald-500/30 hover:bg-emerald-500/10 transition-all duration-500 shadow-md"
                                         title="Meet Bansal LinkedIn Profile"
                                         aria-label="LinkedIn"
                                     >
-                                        <Linkedin className="w-5 h-5" />
+                                        <Linkedin className="w-4 h-4" />
                                     </a>
                                     <button
                                         onClick={copyEmail}
-                                        className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-all text-lg shadow-md ${
+                                        className={`w-11 h-11 rounded-full border flex items-center justify-center transition-all duration-500 shadow-md ${
                                             isCopied
-                                                ? 'bg-emerald-400 border-emerald-400 text-slate-950 scale-105'
-                                                : 'bg-white/5 border-white/10 text-slate-300 hover:text-slate-950 hover:bg-emerald-400 hover:border-emerald-400'
+                                                ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 scale-105'
+                                                : 'bg-white/[0.03] border-white/10 text-slate-300 hover:text-white hover:border-emerald-500/30 hover:bg-emerald-500/10'
                                         }`}
                                         title={isCopied ? 'Email Copied!' : 'Copy Email Address'}
                                         aria-label="Copy Email"
                                     >
-                                        {isCopied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                                        {isCopied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                                     </button>
                                 </div>
                             </div>
 
-                            <div className="border-t border-white/5 pt-8 text-center text-xs text-slate-500">
-                                &copy; 2026 Meet Bansal. All rights reserved. Portfolio designed for institutional equity analysis & finance recruitment.
+                            <div className="border-t border-white/[0.04] pt-8 text-center text-[11px] font-mono text-slate-400">
+                                &copy; 2026 Meet Bansal. Engineered for Institutional Equity Analysis & Corporate Recruitment.
                             </div>
                         </div>
                     </footer>
 
                     {/* ========================================================
-                        GLOBAL MODAL VIEWER COMPONENT (bg-slate-950/80 backdrop-blur)
-                        Displays any PDF inside an iframe with title, Open in New Tab, and Close button
+                        MODAL VIEWER COMPONENT (Native macOS Window Aesthetic)
+                        Heavy Blurring, Traffic Light Controls, 1px Sleek Border
                         ======================================================== */}
                     {activePdfDoc && (
-                        <div className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
-                            <div className="bg-slate-900 border border-slate-700/80 rounded-2xl w-full max-w-5xl h-[92vh] flex flex-col shadow-2xl overflow-hidden relative">
+                        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-2xl flex items-center justify-center p-3 sm:p-6 md:p-8 animate-fadeIn">
+                            <div className="bg-[#0e0e13]/95 border border-white/10 rounded-3xl w-full max-w-5xl h-[92vh] flex flex-col shadow-[0_25px_80px_rgba(0,0,0,0.85)] overflow-hidden relative">
                                 
-                                {/* Modal Header */}
-                                <div className="px-6 py-4 bg-slate-950/90 border-b border-white/10 flex items-center justify-between gap-4 flex-shrink-0">
-                                    <div className="flex items-center gap-3 overflow-hidden">
-                                        <div className="w-9 h-9 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0">
-                                            <FileText className="w-5 h-5" />
-                                        </div>
-                                        <div className="overflow-hidden">
-                                            <h3 className="text-base sm:text-lg font-bold font-heading text-white truncate">
-                                                {activePdfDoc.title}
-                                            </h3>
-                                            <p className="text-xs text-slate-400 truncate">
-                                                {activePdfDoc.desc || 'Verified Document Viewer'}
-                                            </p>
-                                        </div>
+                                {/* macOS Window Titlebar */}
+                                <div className="px-6 py-4 bg-white/[0.03] border-b border-white/[0.08] flex items-center justify-between gap-4 flex-shrink-0">
+                                    {/* macOS Traffic Light Buttons */}
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            onClick={() => setActivePdfDoc(null)}
+                                            className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] hover:brightness-110 flex items-center justify-center transition-all group"
+                                            title="Close"
+                                            aria-label="Close"
+                                        >
+                                            <X className="w-2 h-2 text-black/60 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        </button>
+                                        <div className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e]" title="Minimize"></div>
+                                        <div className="w-3.5 h-3.5 rounded-full bg-[#27c93f]" title="Maximize"></div>
                                     </div>
 
-                                    {/* Action Buttons */}
-                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                    {/* Document Title Center */}
+                                    <div className="text-center overflow-hidden px-4">
+                                        <h3 className="text-sm font-medium text-white truncate flex items-center gap-2 justify-center">
+                                            <FileText className="w-4 h-4 text-emerald-400" />
+                                            <span>{activePdfDoc.title}</span>
+                                        </h3>
+                                        <p className="text-[11px] font-mono text-slate-400 truncate tracking-wide">
+                                            {activePdfDoc.desc || 'Verified PDF Document'}
+                                        </p>
+                                    </div>
+
+                                    {/* Right Action Buttons */}
+                                    <div className="flex items-center gap-2">
                                         <a
                                             href={activePdfDoc.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-emerald-500/20 transition-all"
+                                            className="px-4 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-mono font-medium flex items-center gap-1.5 transition-all duration-300"
                                         >
-                                            <ExternalLink className="w-3.5 h-3.5" />
+                                            <ExternalLink className="w-3.5 h-3.5 text-emerald-400" />
                                             <span className="hidden sm:inline">Open in New Tab</span>
                                         </a>
                                         <button
                                             onClick={() => setActivePdfDoc(null)}
-                                            className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                                            className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
                                             aria-label="Close Modal"
                                         >
-                                            <X className="w-5 h-5" />
+                                            <X className="w-4 h-4" />
                                         </button>
                                     </div>
                                 </div>
 
-                                {/* Modal PDF Viewer Body */}
-                                <div className="flex-grow bg-slate-950 relative flex flex-col">
+                                {/* Modal Iframe Body */}
+                                <div className="flex-grow bg-[#08080a] relative flex flex-col">
                                     <iframe
                                         src={activePdfDoc.url}
                                         className="w-full h-full border-0 flex-grow"
                                         title={activePdfDoc.title}
                                     />
                                     
-                                    {/* Responsive fallback banner */}
-                                    <div className="bg-slate-900/90 border-t border-white/10 px-4 py-2 text-center text-xs text-slate-400 flex items-center justify-center gap-2">
-                                        <span>PDF viewer previewing {activePdfDoc.title}.</span>
+                                    {/* macOS Status Footer */}
+                                    <div className="bg-[#0e0e13]/90 border-t border-white/[0.08] px-6 py-2.5 text-xs text-slate-400 flex items-center justify-between">
+                                        <span className="font-mono text-[11px] text-slate-400">Previewing: {activePdfDoc.title}</span>
                                         <a
                                             href={activePdfDoc.url}
                                             download
-                                            className="text-emerald-400 hover:underline font-medium flex items-center gap-1"
+                                            className="text-emerald-400 hover:text-emerald-300 font-mono text-[11px] flex items-center gap-1.5 transition-colors"
                                         >
-                                            <Download className="w-3 h-3" /> Direct Download
+                                            <Download className="w-3.5 h-3.5" /> Download PDF
                                         </a>
                                     </div>
                                 </div>
