@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meet Bansal | Financial Analyst & ACCA Affiliate</title>
-    <meta name="description" content="Portfolio of Meet Bansal - Financial Analyst, ACCA Affiliate, and MSc Finance Candidate at Durham University. Featuring comparative equity analysis (Coca-Cola vs PepsiCo), DuPont financial modeling, and full-stack analytical applications.">
+    <meta name="description" content="Portfolio of Meet Bansal - Financial Analyst, ACCA Affiliate, and MSc Finance Candidate at Durham University. Featuring comparative equity analysis (Coca-Cola vs PepsiCo), DuPont financial modeling, and verified credentials.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,7 +55,7 @@
             font-family: 'Outfit', sans-serif;
         }
         .glow-radial {
-            background: radial-gradient(circle at 50% 12%, rgba(16, 185, 129, 0.12) 0%, transparent 65%);
+            background: radial-gradient(circle at 50% 12%, rgba(16, 185, 129, 0.14) 0%, transparent 68%);
         }
         .grid-pattern {
             background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
@@ -69,12 +69,6 @@
         }
         .glass-panel:hover {
             border-color: rgba(16, 185, 129, 0.35);
-        }
-        .glass-card-static {
-            background: rgba(15, 23, 42, 0.72);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         ::-webkit-scrollbar {
             width: 8px;
@@ -157,9 +151,6 @@
         const BarChart3 = (props) => (
             <Icon path={<><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></>} {...props} />
         );
-        const Briefcase = (props) => (
-            <Icon path={<><rect width="20" height="14" x="2" y="7" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></>} {...props} />
-        );
         const Layers = (props) => (
             <Icon path={<><polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" /></>} {...props} />
         );
@@ -181,12 +172,15 @@
         const Clock = (props) => (
             <Icon path={<><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></>} {...props} />
         );
+        const Eye = (props) => (
+            <Icon path={<><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></>} {...props} />
+        );
 
         // --- Main Application Component ---
         function App() {
             const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
             const [toastMessage, setToastMessage] = useState('');
-            const [activeModal, setActiveModal] = useState(null);
+            const [activePdfDoc, setActivePdfDoc] = useState(null);
             const [activeMetric, setActiveMetric] = useState('roce');
             const chartCanvasRef = useRef(null);
             const chartInstanceRef = useRef(null);
@@ -220,7 +214,7 @@
                     unit: '%',
                     coke: [58.1, 59.5, 60.4],
                     pepsi: [53.0, 54.2, 54.8],
-                    summary: "Coca-Cola sustained industry-leading gross margins peaking at 60.4% in 2024, demonstrating formidable brand pricing power and an asset-light concentrate licensing model compared to PepsiCo's capital-heavy direct distribution."
+                    summary: "Coca-Cola sustained industry-leading gross margins peaking at 60.4% in 2024, demonstrating formidable brand pricing power and an asset-light concentrate licensing model compared to PepsiCo's direct distribution."
                 }
             };
 
@@ -339,7 +333,8 @@
 
                     {/* ========================================================
                         SECTION 1: HERO SECTION
-                        Top Navigation, Main Header, Subtitle, Description, Buttons, 4 Bottom Hero Cards
+                        Headshot (assets/profile.jpg), Headline, Tagline, Subheading,
+                        Buttons, 4-Card Grid (MSc Finance, ACCA Affiliate, CFA Level 1, BSc Applied Accounting)
                         ======================================================== */}
                     <div className="relative glow-radial grid-pattern">
                         {/* Top Navigation */}
@@ -372,10 +367,10 @@
                                         <a href="#experience" className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
                                             Experience
                                         </a>
-                                        <a href="#skills" className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                                        <a href="#competencies" className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
                                             Skills
                                         </a>
-                                        <a href="#certifications" className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                                        <a href="#credentials" className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
                                             Certifications
                                         </a>
                                     </nav>
@@ -383,11 +378,15 @@
                                     {/* Action Buttons */}
                                     <div className="hidden md:flex items-center gap-3">
                                         <button
-                                            onClick={() => setActiveModal('cv')}
+                                            onClick={() => setActivePdfDoc({
+                                                title: 'ACCA Strategic Professional Certificate',
+                                                url: 'assets/acca-strategic-professional.pdf',
+                                                desc: 'Chartered qualification certifying master-level financial management, audit standards, and corporate reporting.'
+                                            })}
                                             className="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white border border-white/10 hover:border-white/25 transition-all flex items-center gap-2"
                                         >
-                                            <FileText className="w-4 h-4 text-emerald-400" />
-                                            CV Summary
+                                            <Award className="w-4 h-4 text-emerald-400" />
+                                            CV & Credentials
                                         </button>
                                         <a
                                             href="mailto:accameetbansal@gmail.com"
@@ -414,53 +413,27 @@
                             {/* Mobile Dropdown Menu */}
                             {mobileMenuOpen && (
                                 <div className="md:hidden border-b border-white/10 bg-slate-950/95 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-3">
-                                    <a
-                                        href="#research"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="block py-2 text-slate-200 hover:text-emerald-400 font-medium"
-                                    >
-                                        Research
-                                    </a>
-                                    <a
-                                        href="#projects"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="block py-2 text-slate-200 hover:text-emerald-400 font-medium"
-                                    >
-                                        Tech App
-                                    </a>
-                                    <a
-                                        href="#experience"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="block py-2 text-slate-200 hover:text-emerald-400 font-medium"
-                                    >
-                                        Experience
-                                    </a>
-                                    <a
-                                        href="#skills"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="block py-2 text-slate-200 hover:text-emerald-400 font-medium"
-                                    >
-                                        Skills
-                                    </a>
-                                    <a
-                                        href="#certifications"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="block py-2 text-slate-200 hover:text-emerald-400 font-medium"
-                                    >
-                                        Certifications
-                                    </a>
+                                    <a href="#research" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-200 hover:text-emerald-400 font-medium">Research</a>
+                                    <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-200 hover:text-emerald-400 font-medium">Tech App</a>
+                                    <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-200 hover:text-emerald-400 font-medium">Experience</a>
+                                    <a href="#competencies" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-200 hover:text-emerald-400 font-medium">Skills</a>
+                                    <a href="#credentials" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-200 hover:text-emerald-400 font-medium">Certifications</a>
                                     <div className="pt-4 flex flex-col gap-2.5">
                                         <button
-                                            onClick={() => { setActiveModal('cv'); setMobileMenuOpen(false); }}
+                                            onClick={() => {
+                                                setActivePdfDoc({
+                                                    title: 'ACCA Strategic Professional Certificate',
+                                                    url: 'assets/acca-strategic-professional.pdf',
+                                                    desc: 'Chartered qualification certifying master-level financial management and corporate reporting.'
+                                                });
+                                                setMobileMenuOpen(false);
+                                            }}
                                             className="w-full py-2.5 rounded-lg text-sm font-medium bg-white/10 text-white text-center flex items-center justify-center gap-2"
                                         >
-                                            <FileText className="w-4 h-4 text-emerald-400" />
-                                            CV Summary
+                                            <Award className="w-4 h-4 text-emerald-400" />
+                                            View Key Credential
                                         </button>
-                                        <a
-                                            href="mailto:accameetbansal@gmail.com"
-                                            className="w-full py-2.5 rounded-lg text-sm font-semibold bg-emerald-500 text-slate-950 text-center"
-                                        >
+                                        <a href="mailto:accameetbansal@gmail.com" className="w-full py-2.5 rounded-lg text-sm font-semibold bg-emerald-500 text-slate-950 text-center">
                                             Let's Connect
                                         </a>
                                     </div>
@@ -468,30 +441,37 @@
                             )}
                         </header>
 
-                        {/* Hero Content */}
+                        {/* Hero Section */}
                         <section className="pt-36 pb-20 md:pt-48 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                            {/* Availability Badge */}
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-emerald-500/30 text-xs sm:text-sm font-medium mb-8 backdrop-blur-md shadow-lg shadow-emerald-500/10">
-                                <span className="flex h-2.5 w-2.5 relative">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
-                                </span>
-                                <span className="text-slate-300">Open to Institutional Finance & Analyst Roles (UK / Global)</span>
+                            {/* Profile Headshot with subtle emerald glow */}
+                            <div className="relative mx-auto w-36 h-36 sm:w-44 sm:h-44 rounded-full p-1.5 bg-gradient-to-br from-emerald-400 via-teal-500 to-slate-800 shadow-2xl shadow-emerald-500/25 mb-8 group">
+                                <img
+                                    src="assets/profile.jpg"
+                                    alt="Meet Bansal"
+                                    className="w-full h-full object-cover rounded-full border-4 border-slate-950 group-hover:scale-[1.02] transition-transform duration-300"
+                                    onError={(e) => {
+                                        // Fallback if image path has issue
+                                        e.target.onerror = null;
+                                        e.target.src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80";
+                                    }}
+                                />
+                                <div className="absolute inset-0 rounded-full ring-2 ring-emerald-400/40 ring-offset-2 ring-offset-slate-950"></div>
                             </div>
 
-                            {/* Main Header */}
-                            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-4 leading-tight font-heading">
+                            {/* Headline */}
+                            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-3 leading-tight font-heading">
                                 Meet Bansal
                             </h1>
 
-                            {/* Subtitle */}
-                            <p className="text-xl sm:text-2xl lg:text-3xl font-heading font-medium text-emerald-400 mb-6 max-w-3xl mx-auto">
+                            {/* Tagline */}
+                            <p className="text-xl sm:text-2xl lg:text-3xl font-heading font-medium text-emerald-400 mb-4 max-w-3xl mx-auto">
                                 Financial Analyst & ACCA Affiliate
                             </p>
 
-                            {/* Description */}
+                            {/* Subheading */}
                             <p className="text-base sm:text-lg text-slate-300 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
-                                MSc Finance Candidate at Durham University | CFA Level 1 Candidate (Feb 2026). Synthesizing IFRS statutory reporting, DCF valuation, and quantitative metrics into actionable strategic insights.
+                                MSc Finance Candidate at Durham University | CFA Level 1 Candidate (Feb 2026).<br className="hidden sm:inline" />
+                                Synthesizing IFRS statutory reporting, DCF valuation, and quantitative metrics into actionable strategic insights.
                             </p>
 
                             {/* Hero Action Buttons */}
@@ -504,11 +484,15 @@
                                     Explore Equity Research
                                 </a>
                                 <button
-                                    onClick={() => setActiveModal('cv')}
+                                    onClick={() => setActivePdfDoc({
+                                        title: 'BSc Applied Accounting Degree Certificate',
+                                        url: 'assets/bsc-degree-certificate.pdf',
+                                        desc: 'Oxford Brookes University Research & Analysis Project Degree Conferral.'
+                                    })}
                                     className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium border border-white/10 hover:border-white/25 transition-all backdrop-blur-md flex items-center justify-center gap-2"
                                 >
-                                    <FileText className="w-5 h-5 text-emerald-400" />
-                                    Executive Resume
+                                    <Award className="w-5 h-5 text-emerald-400" />
+                                    Executive Credentials
                                 </button>
                                 <button
                                     onClick={copyEmail}
@@ -520,7 +504,7 @@
                                 </button>
                             </div>
 
-                            {/* Bottom Hero Grid (4 identical cards) */}
+                            {/* Quick 4-Card Hero Grid */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
                                 {/* Card 1 */}
                                 <div className="glass-panel p-5 rounded-2xl flex items-center gap-4 transition-all">
@@ -535,13 +519,22 @@
                                 </div>
 
                                 {/* Card 2 */}
-                                <div className="glass-panel p-5 rounded-2xl flex items-center gap-4 transition-all">
-                                    <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                                <div
+                                    onClick={() => setActivePdfDoc({
+                                        title: 'ACCA Strategic Professional Certificate',
+                                        url: 'assets/acca-strategic-professional.pdf',
+                                        desc: 'Completed all 13 professional examination modules with global affiliate status.'
+                                    })}
+                                    className="glass-panel p-5 rounded-2xl flex items-center gap-4 transition-all cursor-pointer hover:border-emerald-500/60 group"
+                                >
+                                    <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0 group-hover:scale-105 transition-transform">
                                         <ShieldCheck className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Chartered Accounting</div>
-                                        <div className="text-sm font-bold text-white font-heading">ACCA Affiliate</div>
+                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
+                                            ACCA <Eye className="w-3 h-3 text-emerald-300" />
+                                        </div>
+                                        <div className="text-sm font-bold text-white font-heading group-hover:text-emerald-300 transition-colors">ACCA Affiliate</div>
                                         <div className="text-xs text-slate-400">13/13 Papers Cleared</div>
                                     </div>
                                 </div>
@@ -552,20 +545,29 @@
                                         <TrendingUp className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Chartered Financial Analyst</div>
-                                        <div className="text-sm font-bold text-white font-heading">CFA L1 Candidate</div>
-                                        <div className="text-xs text-slate-400">Feb 2026 Window</div>
+                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">CFA Institute</div>
+                                        <div className="text-sm font-bold text-white font-heading">CFA Level 1</div>
+                                        <div className="text-xs text-slate-400">Feb 2026 Candidate</div>
                                     </div>
                                 </div>
 
                                 {/* Card 4 */}
-                                <div className="glass-panel p-5 rounded-2xl flex items-center gap-4 transition-all">
-                                    <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                                <div
+                                    onClick={() => setActivePdfDoc({
+                                        title: 'Oxford Brookes BSc Degree Certificate',
+                                        url: 'assets/bsc-degree-certificate.pdf',
+                                        desc: 'Degree Conferred via Coca-Cola vs. PepsiCo Research & Analysis Project.'
+                                    })}
+                                    className="glass-panel p-5 rounded-2xl flex items-center gap-4 transition-all cursor-pointer hover:border-emerald-500/60 group"
+                                >
+                                    <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0 group-hover:scale-105 transition-transform">
                                         <Award className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Undergraduate Degree</div>
-                                        <div className="text-sm font-bold text-white font-heading">BSc Applied Accounting</div>
+                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
+                                            Degree <Eye className="w-3 h-3 text-emerald-300" />
+                                        </div>
+                                        <div className="text-sm font-bold text-white font-heading group-hover:text-emerald-300 transition-colors">BSc Applied Accounting</div>
                                         <div className="text-xs text-slate-400">Oxford Brookes</div>
                                     </div>
                                 </div>
@@ -574,44 +576,44 @@
                     </div>
 
                     {/* ========================================================
-                        SECTION 2: CORE COMPETENCIES & TECHNICAL SKILLS (NEW FULL-WIDTH SECTION)
-                        Group 1 (Financial) & Group 2 (Technical)
+                        SECTION 2: CORE COMPETENCIES MATRIX
+                        Full-Width Section cleanly dividing Financial Accounting from Technical Systems
                         ======================================================== */}
-                    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/60 border-t border-b border-white/5 relative">
+                    <section id="competencies" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/60 border-t border-b border-white/5 relative">
                         <div className="max-w-7xl mx-auto">
                             <div className="text-center mb-14">
                                 <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-                                    Capabilities
+                                    Capability Matrix
                                 </span>
                                 <h2 className="text-3xl sm:text-4xl font-bold font-heading text-white mt-4 mb-3">
-                                    Core Competencies & Technical Skills
+                                    Core Competencies Matrix
                                 </h2>
                                 <p className="text-slate-400 text-sm max-w-2xl mx-auto">
-                                    Comprehensive toolkit bridging technical accounting standards, financial engineering, and modern full-stack development tools.
+                                    Structured matrix cleanly dividing financial accounting governance from technical software and analytical platforms.
                                 </p>
                             </div>
 
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                {/* Group 1: Financial Competencies */}
+                                {/* Group 1: Financial Accounting Skills */}
                                 <div className="glass-panel rounded-2xl p-6 sm:p-8">
                                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
                                         <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                                             <BarChart3 className="w-5 h-5" />
                                         </div>
                                         <div>
-                                            <h3 className="text-xl font-bold font-heading text-white">Financial Competencies</h3>
-                                            <p className="text-xs text-slate-400">Statutory reporting, valuation modeling & regulatory governance</p>
+                                            <h3 className="text-xl font-bold font-heading text-white">Financial Accounting Skills</h3>
+                                            <p className="text-xs text-slate-400">Statutory standards, valuation modeling & compliance audits</p>
                                         </div>
                                     </div>
 
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                                         {[
-                                            { name: 'IFRS Reporting', desc: 'Statutory compliance & multi-entity statements' },
-                                            { name: 'Financial Modelling', desc: '3-statement integrated forecasts & sensitivity' },
-                                            { name: 'DCF Valuation', desc: 'WACC calculations & terminal value projections' },
-                                            { name: 'Bank & AP/AR Reconciliation', desc: 'Ledger matching & variance resolution' },
-                                            { name: 'Indian Income Tax & GST Compliance', desc: 'Statutory returns & corporate audits' },
-                                            { name: 'Risk Management', desc: 'DuPont analysis & liquidity monitoring' },
+                                            { name: 'IFRS Reporting', desc: 'Statutory compliance & consolidated statements' },
+                                            { name: 'Financial Modelling', desc: 'Integrated 3-statement forecasts & scenario models' },
+                                            { name: 'DCF Valuation', desc: 'WACC calculations & terminal multiple sensitivity' },
+                                            { name: 'Bank & AP/AR Reconciliation', desc: 'Multi-currency ledger matching & dispute resolution' },
+                                            { name: 'Indian Income Tax & GST', desc: 'Corporate filings, TDS computations & ITC audits' },
+                                            { name: 'Risk Management', desc: 'DuPont profitability decomposition & liquidity control' },
                                         ].map((skill, idx) => (
                                             <div key={idx} className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-emerald-500/40 transition-all flex items-start gap-3 group">
                                                 <CheckCircle2 className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
@@ -624,25 +626,25 @@
                                     </div>
                                 </div>
 
-                                {/* Group 2: Technical & Systems Skills */}
+                                {/* Group 2: Technical Systems & Software */}
                                 <div className="glass-panel rounded-2xl p-6 sm:p-8">
                                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
                                         <div className="w-10 h-10 rounded-xl bg-sky-500/20 border border-sky-500/30 flex items-center justify-center text-sky-400">
                                             <Layers className="w-5 h-5" />
                                         </div>
                                         <div>
-                                            <h3 className="text-xl font-bold font-heading text-white">Technical & Analytics Stack</h3>
-                                            <p className="text-xs text-slate-400">Enterprise accounting systems & modern web software architecture</p>
+                                            <h3 className="text-xl font-bold font-heading text-white">Technical Systems</h3>
+                                            <p className="text-xs text-slate-400">Enterprise accounting ERPs & modern web software architecture</p>
                                         </div>
                                     </div>
 
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                                         {[
-                                            { name: 'Advanced MS Excel', badge: 'Expert', desc: 'VBA macros, XLOOKUP, Pivot tables & Solver' },
-                                            { name: 'Xero (Certified)', badge: 'Certified', desc: 'Cloud bookkeeping, bank feeds & audit trail' },
-                                            { name: 'QuickBooks', badge: 'Proficient', desc: 'Multi-currency invoicing & balance sheet reconciliation' },
-                                            { name: 'React / Next.js', badge: 'Modern Web', desc: 'Component architecture, reactive states & hooks' },
-                                            { name: 'Vercel', badge: 'Cloud CI/CD', desc: 'Automated pipelines, preview deployments & hosting' },
+                                            { name: 'Advanced MS Excel', badge: 'Advanced', desc: 'VBA macros, XLOOKUP, dynamic arrays & Solver' },
+                                            { name: 'Xero (Certified)', badge: 'Certified', desc: 'Cloud bookkeeping, automated feeds & ledger audits' },
+                                            { name: 'QuickBooks', badge: 'Proficient', desc: 'Multi-entity billing & automated balance sheet controls' },
+                                            { name: 'React / Next.js', badge: 'Frontend', desc: 'Component architecture, reactive states & hooks' },
+                                            { name: 'Vercel', badge: 'Cloud Deploy', desc: 'Continuous integration, serverless hosting & CI/CD' },
                                         ].map((tech, idx) => (
                                             <div key={idx} className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-sky-500/40 transition-all flex items-start gap-3 group">
                                                 <div className="w-2 h-2 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></div>
@@ -657,11 +659,11 @@
                                         ))}
                                     </div>
 
-                                    {/* Tech Summary Banner */}
+                                    {/* Tech & Finance Synthesis Banner */}
                                     <div className="mt-6 p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20 flex items-center gap-3">
                                         <Sparkles className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                                        <p className="text-xs text-slate-300">
-                                            Unique dual profile: combines rigorous <strong className="text-white">ACCA/IFRS accounting governance</strong> with <strong className="text-white">full-stack web development execution</strong> for data automation.
+                                        <p className="text-xs text-slate-300 leading-relaxed">
+                                            Bridges <strong className="text-white">ACCA-accredited statutory rigor</strong> with <strong className="text-white">full-stack web development capability</strong> to automate financial reporting and deliver production analytical applications.
                                         </p>
                                     </div>
                                 </div>
@@ -670,13 +672,134 @@
                     </section>
 
                     {/* ========================================================
-                        SECTION 3: FEATURED EQUITY RESEARCH (Coca-Cola vs. PepsiCo)
-                        Title, Subtitle, Chart.js graph, 3 Document cards, 2025-2026 Addendum
+                        SECTION 3: CREDENTIALS & CERTIFICATIONS GRID (Clickable PDF Modal Cards)
+                        ACCA Strategic Professional, ACCA Advanced Diploma, Oxford Brookes Degree,
+                        J.P. Morgan IB Simulation, Xero Advisor Certified, CFI Accounting Fundamentals
+                        ======================================================== */}
+                    <section id="credentials" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+                        <div className="text-center mb-16">
+                            <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                                Verified Proof
+                            </span>
+                            <h2 className="text-3xl sm:text-5xl font-bold font-heading text-white mt-4 mb-3">
+                                Credentials & Certifications
+                            </h2>
+                            <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+                                Click any credential to preview the official certificate document inside the interactive PDF viewer.
+                            </p>
+                        </div>
+
+                        {/* 6 Clickable Certification Cards */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {[
+                                {
+                                    title: 'ACCA Strategic Professional',
+                                    badge: 'Chartered Body',
+                                    issuer: 'ACCA Global (13/13 Papers Cleared)',
+                                    desc: 'Master-level qualification in strategic business reporting, advanced financial management, and corporate governance.',
+                                    file: 'assets/acca-strategic-professional.pdf',
+                                    icon: ShieldCheck,
+                                    theme: 'emerald'
+                                },
+                                {
+                                    title: 'ACCA Advanced Diploma',
+                                    badge: 'Applied Skills',
+                                    issuer: 'Association of Chartered Certified Accountants',
+                                    desc: 'Comprehensive accreditation covering financial management, taxation, audit & assurance, and financial reporting under IFRS.',
+                                    file: 'assets/acca-advanced-diploma.pdf',
+                                    icon: Award,
+                                    theme: 'emerald'
+                                },
+                                {
+                                    title: 'Oxford Brookes Degree Certificate',
+                                    badge: 'BSc (Hons)',
+                                    issuer: 'Oxford Brookes University (UK)',
+                                    desc: 'Conferred Honours Degree in Applied Accounting evaluated through a 7,500-word corporate research and analysis submission.',
+                                    file: 'assets/bsc-degree-certificate.pdf',
+                                    icon: GraduationCap,
+                                    theme: 'sky'
+                                },
+                                {
+                                    title: 'J.P. Morgan IB Simulation',
+                                    badge: 'Wall Street Simulation',
+                                    issuer: 'J.P. Morgan via Forage',
+                                    desc: 'Practical execution of DCF financial valuation modeling, comparable company analysis, and M&A pitch deck structuring.',
+                                    file: 'assets/jpmorgan-ib-simulation.pdf',
+                                    icon: TrendingUp,
+                                    theme: 'emerald'
+                                },
+                                {
+                                    title: 'Xero Advisor Certified',
+                                    badge: 'Cloud Accounting',
+                                    issuer: 'Xero Official Global Certification',
+                                    desc: 'Demonstrated mastery in cloud ledger setup, automated bank feeds, payroll processing, and multi-currency reconciliations.',
+                                    file: 'assets/xero-certified-advisor.pdf',
+                                    icon: CheckCircle2,
+                                    theme: 'sky'
+                                },
+                                {
+                                    title: 'CFI Accounting Fundamentals',
+                                    badge: 'Corporate Finance Institute',
+                                    issuer: 'Corporate Finance Institute (CFI)',
+                                    desc: 'Core fundamentals of balance sheet mechanics, income statement depreciation schedules, and working capital cash flows.',
+                                    file: 'assets/cfi-accounting-fundamentals.pdf',
+                                    icon: FileText,
+                                    theme: 'amber'
+                                },
+                            ].map((cert, idx) => {
+                                const CardIcon = cert.icon;
+                                return (
+                                    <div
+                                        key={idx}
+                                        onClick={() => setActivePdfDoc({
+                                            title: cert.title,
+                                            url: cert.file,
+                                            desc: cert.desc
+                                        })}
+                                        className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between cursor-pointer hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-500/10 transition-all group"
+                                    >
+                                        <div>
+                                            <div className="flex justify-between items-start mb-4">
+                                                <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                                                    <CardIcon className="w-6 h-6" />
+                                                </div>
+                                                <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-white/5 text-emerald-400 border border-white/10 font-medium">
+                                                    {cert.badge}
+                                                </span>
+                                            </div>
+                                            <h3 className="text-lg font-bold font-heading text-white group-hover:text-emerald-300 transition-colors mb-1">
+                                                {cert.title}
+                                            </h3>
+                                            <div className="text-xs text-emerald-400 font-medium mb-3">
+                                                {cert.issuer}
+                                            </div>
+                                            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+                                                {cert.desc}
+                                            </p>
+                                        </div>
+
+                                        <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-emerald-400 font-semibold group-hover:text-white transition-colors">
+                                            <span className="flex items-center gap-1.5">
+                                                <Eye className="w-4 h-4" /> View Official Certificate
+                                            </span>
+                                            <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </section>
+
+                    {/* ========================================================
+                        SECTION 4: OBU EQUITY RESEARCH SECTION
+                        Comparative Financial & Strategic Analysis (Coca-Cola vs. PepsiCo, 2022-2024)
+                        Chart.js bar chart, 3 clickable cards (Research Report, Presentation Deck, SLS),
+                        and 2025-2026 Market Addendum card
                         ======================================================== */}
                     <section id="research" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                         <div className="text-center mb-16">
                             <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-                                Featured Equity Research
+                                Oxford Brookes RAP
                             </span>
                             <h2 className="text-3xl sm:text-5xl font-bold font-heading text-white mt-4 mb-3">
                                 Comparative Financial & Strategic Analysis
@@ -686,7 +809,7 @@
                             </p>
                         </div>
 
-                        {/* Interactive Chart Section */}
+                        {/* Interactive Comparative Chart Section */}
                         <div className="glass-panel rounded-3xl p-6 sm:p-8 lg:p-10 mb-12 border border-white/10 shadow-2xl">
                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-6 border-b border-white/10">
                                 <div>
@@ -732,90 +855,102 @@
                             <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 flex items-start gap-3.5">
                                 <TrendingUp className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                                 <div className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                                    <strong className="text-white">Analyst Interpretation: </strong>
+                                    <strong className="text-white">Analyst DuPont Interpretation: </strong>
                                     {chartDatasets[activeMetric].summary}
                                 </div>
                             </div>
                         </div>
 
-                        {/* Three Document Download Cards Side-by-Side */}
+                        {/* Three Document Modal Trigger Cards Side-by-Side */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                            {/* Document Card 1 */}
-                            <div className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-emerald-500/40 transition-all">
+                            {/* Card 1: Research Report */}
+                            <div
+                                onClick={() => setActivePdfDoc({
+                                    title: 'Research & Analysis Report (7,500 words)',
+                                    url: 'assets/obu-research-report.pdf',
+                                    desc: 'Full 7,500-word undergraduate dissertation examining 3-year SEC Form 10-K filings, DuPont margin trade-offs, and supply chain elasticity.'
+                                })}
+                                className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-500/10 transition-all cursor-pointer group"
+                            >
                                 <div>
                                     <div className="flex justify-between items-start mb-4">
-                                        <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                                        <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
                                             <FileText className="w-6 h-6" />
                                         </div>
                                         <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-white/5 text-emerald-400 border border-white/10 font-medium">
                                             7,500 Words
                                         </span>
                                     </div>
-                                    <h4 className="text-lg font-bold font-heading text-white mb-2">
+                                    <h4 className="text-lg font-bold font-heading text-white group-hover:text-emerald-300 transition-colors mb-2">
                                         Research & Analysis Report
                                     </h4>
                                     <p className="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
-                                        Comprehensive undergraduate thesis evaluating 3-year financial statements, DuPont profitability drivers, working capital cycles, and ESG compliance.
+                                        Comprehensive equity valuation model evaluating 3-year financial statements, DuPont profitability drivers, working capital cycles, and ESG packaging compliance.
                                     </p>
                                 </div>
-                                <button
-                                    onClick={() => setActiveModal('report')}
-                                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 border border-emerald-500/30"
-                                >
-                                    <Download className="w-4 h-4" /> Download / View Abstract
-                                </button>
+                                <div className="w-full py-2.5 px-4 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500 text-emerald-300 group-hover:text-slate-950 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 border border-emerald-500/30">
+                                    <Eye className="w-4 h-4" /> Open Report Viewer
+                                </div>
                             </div>
 
-                            {/* Document Card 2 */}
-                            <div className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-emerald-500/40 transition-all">
+                            {/* Card 2: Executive Presentation Deck */}
+                            <div
+                                onClick={() => setActivePdfDoc({
+                                    title: 'Executive Presentation Deck (15 Slides)',
+                                    url: 'assets/obu-presentation-deck.pdf',
+                                    desc: '15-slide institutional pitch deck breaking down beverage vs snack mix, price elasticity, ROCE drivers, and investment recommendations.'
+                                })}
+                                className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-sky-500/60 hover:shadow-xl hover:shadow-sky-500/10 transition-all cursor-pointer group"
+                            >
                                 <div>
                                     <div className="flex justify-between items-start mb-4">
-                                        <div className="w-12 h-12 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400">
+                                        <div className="w-12 h-12 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform">
                                             <Presentation className="w-6 h-6" />
                                         </div>
                                         <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-white/5 text-sky-400 border border-white/10 font-medium">
                                             15 Slides
                                         </span>
                                     </div>
-                                    <h4 className="text-lg font-bold font-heading text-white mb-2">
+                                    <h4 className="text-lg font-bold font-heading text-white group-hover:text-sky-300 transition-colors mb-2">
                                         Executive Presentation Deck
                                     </h4>
                                     <p className="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
-                                        High-impact pitch deck summarizing strategic moats, beverage vs snack revenue mix, pricing elasticity, and final investor recommendation.
+                                        High-impact executive pitch deck summarizing competitive moats, beverage vs snack revenue mix, pricing elasticity, and final investor recommendation.
                                     </p>
                                 </div>
-                                <button
-                                    onClick={() => setActiveModal('deck')}
-                                    className="w-full py-2.5 px-4 rounded-xl bg-sky-500/15 hover:bg-sky-500 text-sky-300 hover:text-slate-950 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 border border-sky-500/30"
-                                >
-                                    <Download className="w-4 h-4" /> View Deck Summary
-                                </button>
+                                <div className="w-full py-2.5 px-4 rounded-xl bg-sky-500/15 group-hover:bg-sky-500 text-sky-300 group-hover:text-slate-950 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 border border-sky-500/30">
+                                    <Eye className="w-4 h-4" /> Open Slide Deck Viewer
+                                </div>
                             </div>
 
-                            {/* Document Card 3 */}
-                            <div className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-emerald-500/40 transition-all">
+                            {/* Card 3: Skills & Learning Statement */}
+                            <div
+                                onClick={() => setActivePdfDoc({
+                                    title: 'Skills & Learning Statement (SLS)',
+                                    url: 'assets/obu-sls-reflection.pdf',
+                                    desc: 'Self-reflective academic statement analyzing research judgment challenges, resolving non-GAAP discrepancies, and ethical leadership.'
+                                })}
+                                className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-amber-500/60 hover:shadow-xl hover:shadow-amber-500/10 transition-all cursor-pointer group"
+                            >
                                 <div>
                                     <div className="flex justify-between items-start mb-4">
-                                        <div className="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                                        <div className="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
                                             <GraduationCap className="w-6 h-6" />
                                         </div>
                                         <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-white/5 text-amber-400 border border-white/10 font-medium">
                                             Oxford Brookes
                                         </span>
                                     </div>
-                                    <h4 className="text-lg font-bold font-heading text-white mb-2">
+                                    <h4 className="text-lg font-bold font-heading text-white group-hover:text-amber-300 transition-colors mb-2">
                                         Skills & Learning Statement
                                     </h4>
                                     <p className="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
-                                        Methodological reflection on research judgment hurdles, resolving non-GAAP discrepancies, ethical dimensions, and professional advisory skills.
+                                        Methodological reflection on research judgment hurdles, resolving non-GAAP discrepancies between corporate filings, and ethical governance standards.
                                     </p>
                                 </div>
-                                <button
-                                    onClick={() => setActiveModal('sls')}
-                                    className="w-full py-2.5 px-4 rounded-xl bg-amber-500/15 hover:bg-amber-500 text-amber-300 hover:text-slate-950 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 border border-amber-500/30"
-                                >
-                                    <Download className="w-4 h-4" /> Read Statement Reflection
-                                </button>
+                                <div className="w-full py-2.5 px-4 rounded-xl bg-amber-500/15 group-hover:bg-amber-500 text-amber-300 group-hover:text-slate-950 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 border border-amber-500/30">
+                                    <Eye className="w-4 h-4" /> Open SLS Reflection
+                                </div>
                             </div>
                         </div>
 
@@ -854,7 +989,7 @@
                     </section>
 
                     {/* ========================================================
-                        SECTION 4: TECHNICAL WEB PROJECTS
+                        SECTION 5: TECHNICAL WEB PROJECTS
                         Exactly ONE project: 'Manage Me'
                         ======================================================== */}
                     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/60 border-t border-b border-white/5 relative">
@@ -897,6 +1032,9 @@
                                             React
                                         </span>
                                         <span className="px-3 py-1 rounded-lg bg-white/5 text-slate-200 text-xs font-mono font-medium border border-white/10">
+                                            Next.js
+                                        </span>
+                                        <span className="px-3 py-1 rounded-lg bg-white/5 text-slate-200 text-xs font-mono font-medium border border-white/10">
                                             Tailwind CSS
                                         </span>
                                         <span className="px-3 py-1 rounded-lg bg-white/5 text-slate-200 text-xs font-mono font-medium border border-white/10">
@@ -919,19 +1057,20 @@
                     </section>
 
                     {/* ========================================================
-                        SECTION 5: PROFESSIONAL EXPERIENCE (Vertical Timeline)
-                        Job 1: United Corporate Accounting | Job 2: CA Aditya Karir & Associates
+                        SECTION 6: PROFESSIONAL EXPERIENCE (Vertical Timeline)
+                        Job 1: Accounts & IFRS Trainee | United Corporate Accounting
+                        Job 2: Tax and Accounts Associate | CA Aditya Karir & Associates
                         ======================================================== */}
                     <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
                         <div className="text-center mb-16">
                             <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-                                Career History
+                                Professional Track Record
                             </span>
                             <h2 className="text-3xl sm:text-4xl font-bold font-heading text-white mt-4 mb-3">
                                 Professional Experience
                             </h2>
                             <p className="text-slate-400 text-sm max-w-xl mx-auto">
-                                Proven corporate track record spanning IFRS compliance, complex ledger audits, and taxation filings.
+                                Proven corporate background spanning IFRS statutory compliance, multi-currency ledger audits, and taxation filings.
                             </p>
                         </div>
 
@@ -972,7 +1111,7 @@
                                         </li>
                                         <li className="flex items-start gap-2.5">
                                             <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 flex-shrink-0"></div>
-                                            <span><strong>Turnaround Acceleration:</strong> Re-engineered monthly reconciliation workflows, driving a <strong className="text-emerald-300">15% reduction in turnaround time</strong> and eliminating month-end closing bottlenecks.</span>
+                                            <span><strong>Turnaround Acceleration:</strong> Re-engineered monthly reconciliation workflows, driving a <strong className="text-emerald-300">15% reduction in reconciliation turnaround time</strong> and eliminating month-end closing bottlenecks.</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -1022,126 +1161,8 @@
                     </section>
 
                     {/* ========================================================
-                        SECTION 6: CERTIFICATIONS & ACTIVITIES (NEW SECTION)
-                        Clean 3-column grid of cards for professional development
-                        Card 1: J.P. Morgan & BofA Forage
-                        Card 2: Xero Advisor Certified & CFI Accounting Fundamentals
-                        Card 3: ACCA EPSM & RYLA Entrepreneurship Programme
-                        ======================================================== */}
-                    <section id="certifications" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/60 border-t border-b border-white/5 relative">
-                        <div className="max-w-7xl mx-auto">
-                            <div className="text-center mb-14">
-                                <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-                                    Continuous Development
-                                </span>
-                                <h2 className="text-3xl sm:text-4xl font-bold font-heading text-white mt-4 mb-3">
-                                    Certifications & Professional Activities
-                                </h2>
-                                <p className="text-slate-400 text-sm max-w-xl mx-auto">
-                                    Industry-standard simulations, professional accreditations, and executive leadership initiatives.
-                                </p>
-                            </div>
-
-                            {/* Clean 3-Column Grid */}
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                
-                                {/* Card 1: Investment Banking Simulations */}
-                                <div className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-emerald-500/40 transition-all">
-                                    <div>
-                                        <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
-                                            <TrendingUp className="w-6 h-6" />
-                                        </div>
-                                        <h3 className="text-lg font-bold font-heading text-white mb-4">
-                                            Investment Banking Simulations
-                                        </h3>
-                                        
-                                        <div className="space-y-4">
-                                            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5">
-                                                <div className="text-sm font-semibold text-white">Investment Banking Job Simulation</div>
-                                                <div className="text-xs text-emerald-400 font-medium mt-0.5">J.P. Morgan via Forage</div>
-                                                <p className="text-xs text-slate-400 mt-1">DCF valuation modeling, LBO scenarios, and M&A pitch deck construction.</p>
-                                            </div>
-
-                                            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5">
-                                                <div className="text-sm font-semibold text-white">Investment Banking Virtual Experience</div>
-                                                <div className="text-xs text-sky-400 font-medium mt-0.5">Bank of America via Forage</div>
-                                                <p className="text-xs text-slate-400 mt-1">Capital markets advisory, financial benchmarking, and institutional debt structuring.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-1.5 text-xs text-emerald-400 font-medium">
-                                        <CheckCircle2 className="w-4 h-4" /> Practical Wall Street Case Studies
-                                    </div>
-                                </div>
-
-                                {/* Card 2: Accounting & Valuation Credentials */}
-                                <div className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-sky-500/40 transition-all">
-                                    <div>
-                                        <div className="w-12 h-12 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 mb-5">
-                                            <ShieldCheck className="w-6 h-6" />
-                                        </div>
-                                        <h3 className="text-lg font-bold font-heading text-white mb-4">
-                                            Accounting & Valuation Credentials
-                                        </h3>
-                                        
-                                        <div className="space-y-4">
-                                            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5">
-                                                <div className="text-sm font-semibold text-white">Xero Advisor Certified</div>
-                                                <div className="text-xs text-emerald-400 font-medium mt-0.5">Xero Global Certification</div>
-                                                <p className="text-xs text-slate-400 mt-1">Advanced cloud ledger architecture, automated reconciliation rules, and client reporting.</p>
-                                            </div>
-
-                                            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5">
-                                                <div className="text-sm font-semibold text-white">Accounting Fundamentals</div>
-                                                <div className="text-xs text-sky-400 font-medium mt-0.5">Corporate Finance Institute (CFI)</div>
-                                                <p className="text-xs text-slate-400 mt-1">Core accounting mechanics, revenue recognition guidelines, and financial statement mechanics.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-1.5 text-xs text-sky-400 font-medium">
-                                        <CheckCircle2 className="w-4 h-4" /> Accredited Professional Standards
-                                    </div>
-                                </div>
-
-                                {/* Card 3: Ethics & Leadership Initiatives */}
-                                <div className="glass-panel p-6 sm:p-7 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-amber-500/40 transition-all">
-                                    <div>
-                                        <div className="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-5">
-                                            <Award className="w-6 h-6" />
-                                        </div>
-                                        <h3 className="text-lg font-bold font-heading text-white mb-4">
-                                            Ethics & Leadership Initiatives
-                                        </h3>
-                                        
-                                        <div className="space-y-4">
-                                            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5">
-                                                <div className="text-sm font-semibold text-white">Ethics and Professional Skills Module</div>
-                                                <div className="text-xs text-emerald-400 font-medium mt-0.5">ACCA Official Programme</div>
-                                                <p className="text-xs text-slate-400 mt-1">Commercial acumen, skepticism, conflict resolution, and compliance in corporate reporting.</p>
-                                            </div>
-
-                                            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5">
-                                                <div className="text-sm font-semibold text-white">RYLA Entrepreneurship Programme</div>
-                                                <div className="text-xs text-amber-400 font-medium mt-0.5">Rotary Youth Leadership Awards</div>
-                                                <p className="text-xs text-slate-400 mt-1">Intensive cross-disciplinary leadership training, decision-making ethics, and venture strategy.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-1.5 text-xs text-amber-400 font-medium">
-                                        <CheckCircle2 className="w-4 h-4" /> Governance & Executive Ethics
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* ========================================================
                         SECTION 7: FOOTER
-                        Email, Phone, Location, LinkedIn icon button
+                        Email, Phone, Location, LinkedIn
                         ======================================================== */}
                     <footer className="bg-slate-950 text-slate-400 py-16 border-t border-white/10">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1155,7 +1176,7 @@
                                         <span className="font-heading font-bold text-xl text-white">Meet Bansal</span>
                                     </div>
                                     <p className="text-sm text-slate-400 max-w-sm">
-                                        Financial Analyst & ACCA Affiliate synthesizing IFRS statutory reporting, DCF valuations, and quantitative modeling.
+                                        Financial Analyst & ACCA Affiliate synthesizing IFRS statutory reporting, DCF valuations, and quantitative financial models.
                                     </p>
                                 </div>
 
@@ -1183,7 +1204,7 @@
                                     </span>
                                 </div>
 
-                                {/* LinkedIn Icon Button */}
+                                {/* LinkedIn & Actions */}
                                 <div className="flex gap-3">
                                     <a
                                         href="https://linkedin.com/in/meetbansal"
@@ -1213,221 +1234,71 @@
                     </footer>
 
                     {/* ========================================================
-                        MODALS: CV Summary, Research Abstract, Presentation Deck, SLS Reflection
+                        GLOBAL MODAL VIEWER COMPONENT (bg-slate-950/80 backdrop-blur)
+                        Displays any PDF inside an iframe with title, Open in New Tab, and Close button
                         ======================================================== */}
-                    
-                    {/* CV Summary Modal */}
-                    {activeModal === 'cv' && (
-                        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-                            <div className="glass-panel max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-3xl p-6 sm:p-8 border border-white/15 shadow-2xl relative">
-                                <button
-                                    onClick={() => setActiveModal(null)}
-                                    className="absolute top-5 right-5 text-slate-400 hover:text-white p-2"
-                                    aria-label="Close"
-                                >
-                                    <X className="w-6 h-6" />
-                                </button>
-                                <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-1">
-                                    <FileText className="w-4 h-4" /> Profile & Credentials
-                                </div>
-                                <h3 className="font-heading font-bold text-2xl text-white mb-1">
-                                    Meet Bansal | Executive Resume
-                                </h3>
-                                <p className="text-xs text-slate-400 mb-6">MSc Finance (Durham) | ACCA Affiliate | CFA L1 Candidate</p>
+                    {activePdfDoc && (
+                        <div className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
+                            <div className="bg-slate-900 border border-slate-700/80 rounded-2xl w-full max-w-5xl h-[92vh] flex flex-col shadow-2xl overflow-hidden relative">
                                 
-                                <div className="space-y-4 text-xs sm:text-sm text-slate-300">
-                                    <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
-                                        <span className="font-bold text-white block mb-1">Core Competency:</span>
-                                        Synthesizes full IFRS statutory compliance, multi-currency ledger audits, and financial valuation models with full-stack programming capabilities for automated workflow execution.
-                                    </div>
-
-                                    <div>
-                                        <span className="font-bold text-white block mb-1">Experience Summary:</span>
-                                        <ul className="list-disc list-inside space-y-1 text-slate-400">
-                                            <li>Accounts & IFRS Trainee (United Corporate Accounting): Streamlined reconciliation turnaround by 15%.</li>
-                                            <li>Tax & Accounts Associate (CA Aditya Karir & Associates): Domestic/overseas ledgers, Indian income tax & GST filings.</li>
-                                        </ul>
-                                    </div>
-
-                                    <div>
-                                        <span className="font-bold text-white block mb-2">Direct Contact:</span>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-slate-300 text-xs">
-                                            <div className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-emerald-400" /> accameetbansal@gmail.com</div>
-                                            <div className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-emerald-400" /> +44 7596 085818</div>
-                                            <div className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-emerald-400" /> Durham, United Kingdom</div>
-                                            <div className="flex items-center gap-2"><Linkedin className="w-3.5 h-3.5 text-emerald-400" /> linkedin.com/in/meetbansal</div>
+                                {/* Modal Header */}
+                                <div className="px-6 py-4 bg-slate-950/90 border-b border-white/10 flex items-center justify-between gap-4 flex-shrink-0">
+                                    <div className="flex items-center gap-3 overflow-hidden">
+                                        <div className="w-9 h-9 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                                            <FileText className="w-5 h-5" />
+                                        </div>
+                                        <div className="overflow-hidden">
+                                            <h3 className="text-base sm:text-lg font-bold font-heading text-white truncate">
+                                                {activePdfDoc.title}
+                                            </h3>
+                                            <p className="text-xs text-slate-400 truncate">
+                                                {activePdfDoc.desc || 'Verified Document Viewer'}
+                                            </p>
                                         </div>
                                     </div>
+
+                                    {/* Action Buttons */}
+                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                        <a
+                                            href={activePdfDoc.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-emerald-500/20 transition-all"
+                                        >
+                                            <ExternalLink className="w-3.5 h-3.5" />
+                                            <span className="hidden sm:inline">Open in New Tab</span>
+                                        </a>
+                                        <button
+                                            onClick={() => setActivePdfDoc(null)}
+                                            className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                                            aria-label="Close Modal"
+                                        >
+                                            <X className="w-5 h-5" />
+                                        </button>
+                                    </div>
                                 </div>
 
-                                <div className="mt-8 pt-5 border-t border-white/10 flex justify-between items-center">
-                                    <button
-                                        onClick={copyEmail}
-                                        className="text-xs text-emerald-400 hover:underline flex items-center gap-1.5"
-                                    >
-                                        <Copy className="w-3.5 h-3.5" /> Copy Email Address
-                                    </button>
-                                    <div className="flex gap-2">
-                                        <button
-                                            onClick={() => setActiveModal(null)}
-                                            className="px-4 py-2 rounded-xl bg-white/10 text-white text-xs font-semibold"
-                                        >
-                                            Close
-                                        </button>
+                                {/* Modal PDF Viewer Body */}
+                                <div className="flex-grow bg-slate-950 relative flex flex-col">
+                                    <iframe
+                                        src={activePdfDoc.url}
+                                        className="w-full h-full border-0 flex-grow"
+                                        title={activePdfDoc.title}
+                                    />
+                                    
+                                    {/* Responsive fallback banner */}
+                                    <div className="bg-slate-900/90 border-t border-white/10 px-4 py-2 text-center text-xs text-slate-400 flex items-center justify-center gap-2">
+                                        <span>PDF viewer previewing {activePdfDoc.title}.</span>
                                         <a
-                                            href="mailto:accameetbansal@gmail.com?subject=Interview%20Inquiry%20-%20Meet%20Bansal"
-                                            className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-semibold"
+                                            href={activePdfDoc.url}
+                                            download
+                                            className="text-emerald-400 hover:underline font-medium flex items-center gap-1"
                                         >
-                                            Contact via Email
+                                            <Download className="w-3 h-3" /> Direct Download
                                         </a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    )}
 
-                    {/* Report Modal */}
-                    {activeModal === 'report' && (
-                        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-                            <div className="glass-panel max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-3xl p-6 sm:p-8 border border-white/15 shadow-2xl relative">
-                                <button
-                                    onClick={() => setActiveModal(null)}
-                                    className="absolute top-5 right-5 text-slate-400 hover:text-white p-2"
-                                    aria-label="Close"
-                                >
-                                    <X className="w-6 h-6" />
-                                </button>
-                                <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">
-                                    <FileText className="w-4 h-4" /> Research Abstract
-                                </div>
-                                <h3 className="font-heading font-bold text-2xl text-white mb-4">
-                                    Coca-Cola Co. vs. PepsiCo Inc. (2022–2024)
-                                </h3>
-                                <div className="space-y-4 text-sm text-slate-300 leading-relaxed">
-                                    <p>
-                                        <strong>Executive Objective:</strong> Empirical comparison between two consumer goods titans assessing how differing business architectures (Coca-Cola's concentrate licensing vs. PepsiCo's vertically integrated snack/beverage model) weathered inflationary price hikes and supply chain shifts.
-                                    </p>
-                                    <div className="bg-slate-950/80 p-4 rounded-xl border border-white/10 text-xs space-y-1 text-slate-400">
-                                        <div className="font-bold text-white uppercase text-[11px] mb-1">Audited Scope:</div>
-                                        <div>• SEC Form 10-K audited filings (FY2022 to FY2024).</div>
-                                        <div>• 3-Tier DuPont Model (Operating Profitability, Asset Turnover, Capital Leverage).</div>
-                                        <div>• Macroeconomic PESTEL factors including sugar taxation and EPR packaging levies.</div>
-                                    </div>
-                                    <p className="text-xs text-slate-400">
-                                        <strong>Key Takeaway:</strong> Coca-Cola maintained remarkable operating profit defense (~29.2%), whereas PepsiCo achieved superior capital velocity (ROCE 18.9% in 2024) through snack inventory turnover.
-                                    </p>
-                                </div>
-                                <div className="mt-8 pt-4 border-t border-white/10 flex justify-end gap-3">
-                                    <button
-                                        onClick={() => setActiveModal(null)}
-                                        className="px-4 py-2 rounded-xl bg-white/10 text-white text-xs font-semibold"
-                                    >
-                                        Close
-                                    </button>
-                                    <a
-                                        href="mailto:accameetbansal@gmail.com?subject=Request%20for%207500-word%20Research%20Report"
-                                        className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-semibold"
-                                    >
-                                        Request Full 7,500w Document
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Deck Modal */}
-                    {activeModal === 'deck' && (
-                        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-                            <div className="glass-panel max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-3xl p-6 sm:p-8 border border-white/15 shadow-2xl relative">
-                                <button
-                                    onClick={() => setActiveModal(null)}
-                                    className="absolute top-5 right-5 text-slate-400 hover:text-white p-2"
-                                    aria-label="Close"
-                                >
-                                    <X className="w-6 h-6" />
-                                </button>
-                                <div className="flex items-center gap-2 text-sky-400 text-xs font-bold uppercase tracking-wider mb-2">
-                                    <Presentation className="w-4 h-4" /> Presentation Deck Outline
-                                </div>
-                                <h3 className="font-heading font-bold text-2xl text-white mb-4">
-                                    15-Slide Executive Pitch Deck
-                                </h3>
-                                <div className="space-y-3 text-xs sm:text-sm text-slate-300">
-                                    <div className="p-3.5 bg-white/5 rounded-xl border border-white/5 flex items-center gap-3">
-                                        <span className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-xs flex-shrink-0">1-4</span>
-                                        <div>
-                                            <div className="text-white font-semibold">Macroeconomic Landscape & Industry Dynamics</div>
-                                            <div className="text-xs text-slate-400">Commodity spikes, FX volatility, and supply chain adjustments.</div>
-                                        </div>
-                                    </div>
-                                    <div className="p-3.5 bg-white/5 rounded-xl border border-white/5 flex items-center gap-3">
-                                        <span className="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 font-bold flex items-center justify-center text-xs flex-shrink-0">5-9</span>
-                                        <div>
-                                            <div className="text-white font-semibold">DuPont Decomposition & Visual Margins</div>
-                                            <div className="text-xs text-slate-400">Gross margin divergence, ROCE drivers, and interest coverage safety.</div>
-                                        </div>
-                                    </div>
-                                    <div className="p-3.5 bg-white/5 rounded-xl border border-white/5 flex items-center gap-3">
-                                        <span className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-xs flex-shrink-0">10-15</span>
-                                        <div>
-                                            <div className="text-white font-semibold">Strategic Roadmaps & Investment Verdict</div>
-                                            <div className="text-xs text-slate-400">EPR compliance cost models, capex projections, and final rating summary.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="mt-8 pt-4 border-t border-white/10 flex justify-end gap-3">
-                                    <button
-                                        onClick={() => setActiveModal(null)}
-                                        className="px-4 py-2 rounded-xl bg-white/10 text-white text-xs font-semibold"
-                                    >
-                                        Close
-                                    </button>
-                                    <a
-                                        href="mailto:accameetbansal@gmail.com?subject=Request%20for%2015-Slide%20Presentation%20Deck"
-                                        className="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-slate-950 text-xs font-semibold"
-                                    >
-                                        Request Presentation Deck
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* SLS Modal */}
-                    {activeModal === 'sls' && (
-                        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-                            <div className="glass-panel max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-3xl p-6 sm:p-8 border border-white/15 shadow-2xl relative">
-                                <button
-                                    onClick={() => setActiveModal(null)}
-                                    className="absolute top-5 right-5 text-slate-400 hover:text-white p-2"
-                                    aria-label="Close"
-                                >
-                                    <X className="w-6 h-6" />
-                                </button>
-                                <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
-                                    <GraduationCap className="w-4 h-4" /> Academic Reflection
-                                </div>
-                                <h3 className="font-heading font-bold text-2xl text-white mb-4">
-                                    Skills & Learning Statement (SLS)
-                                </h3>
-                                <div className="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
-                                    <p>
-                                        The Skills & Learning Statement constitutes the critical self-reflective foundation for Oxford Brookes University degree conferral:
-                                    </p>
-                                    <ul className="list-disc list-inside space-y-2 p-4 bg-white/5 rounded-2xl border border-white/5 text-slate-400 text-xs">
-                                        <li><strong>Consultative Iteration:</strong> Navigating academic feedback to recalibrate ratio weighting against capital distortion.</li>
-                                        <li><strong>Information Evaluation:</strong> Reconciling non-GAAP performance metrics across differing corporate SEC disclosure methods.</li>
-                                        <li><strong>Ethical Judgment:</strong> Evaluating accountability and greenwashing scrutiny under corporate ESG reporting requirements.</li>
-                                    </ul>
-                                </div>
-                                <div className="mt-8 pt-4 border-t border-white/10 flex justify-end">
-                                    <button
-                                        onClick={() => setActiveModal(null)}
-                                        className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-semibold"
-                                    >
-                                        Close
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     )}
